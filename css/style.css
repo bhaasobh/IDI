@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0; 
+}
+header, main, footer, nav, aside, section, div  {
+
+    display: block;
+
+}
+
+#wrapper
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header
+{
+
+position: absolute;
+width: 100%;
+height: 176px;
+top: 0px;
+display: flex   ;
+align-items:flex-end;
+background: #F0F0F0;
+}
+aside
+{
+    position: relative;
+    display: flex;
+    direction: rtl;
+    font-size: large;
+width: 232px;
+height: 848px;
+top: 176px;
+background: #F0F0F0;
+}
+main
+{
+    background-color: aqua;
+    width: 100%;
+height: 848px;
+}
+
+.nav-link   
+{
+  color: black;
+}
+.form-control {
+display:inline ;
+direction: rtl;
+width: auto;
+}
+.navbar
+{
+    width: 100%;
+}
