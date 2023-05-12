@@ -20,7 +20,7 @@ header
 {
 
 position:relative;
-width: 100%;
+width: 1300px;
 height: 176px;
 display: flex   ;
 align-items:flex-end;
@@ -33,7 +33,7 @@ aside
     display: flex;
     direction: rtl;
     font-size: large;
-    width: 330px;
+    width: 250px;
     height: 848px;
 
     background: #F0F0F0;
@@ -45,7 +45,7 @@ main
     background-color:rgb(0, 0, 0);
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 1050px;
     height: 848px;
 }
 
@@ -82,11 +82,44 @@ width: auto;
 .nav-item:hover{
     background-color:grey;
 }
+body
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .navbar
 {
-    width: 100%;
+    width: 1300px;
+    display: flex;
+    position:absolute;
+    align-items: center;
 }
+#logo
+{
+    position: absolute;
 
+    margin-bottom: 140px;
+}
+.profilePic
+{
+    position: absolute;
+  margin-left: 90%;
+  margin-bottom: 170px;
+  height: 100px;
+  border-top-right-radius: 100px;
+border-bottom-left-radius: 100px;
+border-top-left-radius: 100px;
+border-bottom-right-radius: 100px;
+    
+}
+#profileName
+{
+    position: absolute;
+    margin-left: 80%;
+    margin-bottom: 100px;
+}
 #but{
     display: flex;
     flex-direction: row;
