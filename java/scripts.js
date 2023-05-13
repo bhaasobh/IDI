@@ -1,3 +1,19 @@
+$(document).ready(function () {
+
+ for(i=0;i<5;i++)
+           {  
+             const cop = document.getElementById("copCard");        
+              const newCop = cop.cloneNode(true);
+  
+    document.getElementById("copsEvent").append(newCop);
+
+  
+           }
+  
+    
+ 
+
+});
 
 
 var flag=0
