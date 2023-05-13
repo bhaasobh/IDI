@@ -12,8 +12,9 @@ a{
 }
 #wrapper
 {
-    position: relative;
-    display: flex; 
+    margin: 0px auto;
+    width: 100%;
+    
 }
 
 header
@@ -24,8 +25,17 @@ width: 1300px;
 height: 176px;
 display: flex   ;
 align-items:flex-end;
-background: #F0F0F0;
+background: #f1f1f1;
 }
+
+
+#aside-and-main{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+}
+
 
 aside
 {
@@ -33,16 +43,52 @@ aside
     display: flex;
     direction: rtl;
     font-size: large;
-    width: 250px;
-    height: 848px;
 
-    background: #F0F0F0;
+    width: 250px;
+    height: 1100px auto;
+    border: #f1f1f1;
+    background: #f1f1f1;
+    border-radius: 10px;
 }
+
+.nav-flex-column{
+    display: block;
+    position: relative;
+}
+
+/* #exit{
+    display: grid;
+    justify-self: end;
+
+} */
+
+.nav-link   
+{
+  color: black;
+}
+.nav-link:hover{
+    color: #fafafa;
+    /* background-color:rgb(192, 192, 192);  */
+}
+
+
+.nav-item{
+    margin-top: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size:x-large;
+    width:100%;
+    border-radius: 10px;
+}
+.nav-item:hover{
+    background-color:rgb(28, 87, 248);
+}
+
+
 main
 {
-    position: relative;
+    
     display: flex;
-    background-color:rgb(0, 0, 0);
+    background-color:#FFFFFF;
     flex-direction: column;
     align-items: center;
     width: 1050px;
@@ -51,29 +97,43 @@ main
 
 .card{
     margin-top: 80px;
+    width: 40rem;
+    background-color:rgb(233, 233, 233);
+}
+.card:hover{
+    background-color: rgb(244, 246, 252);
+
 }
 .card-body{
-    direction: rtl;
     margin-right: 20px;
 }
 
 #icons{
     display: flex;
     flex-direction: row;
+    direction: ltr;
+    bottom: 0px;
 }
 .icon{
     margin-right: 13px;
+    border: 0px;
+    text-decoration: none;
+    color: black;
 }
 
-.nav-link   
-{
-  color: black;
+.icon:hover{
+    color: gray;
 }
+
+
 .form-control {
 display:inline ;
 direction: rtl;
 width: auto;
 }
+
+
+
 .nav-item{
     margin-top: 10px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -89,6 +149,7 @@ body
     justify-content: center;
     align-items: center;
 }
+
 .navbar
 {
     width: 1300px;
@@ -100,6 +161,9 @@ body
 {
     position: absolute;
 
+
+#btn{
+=======
     margin-bottom: 140px;
 }
 .profilePic
@@ -121,11 +185,65 @@ border-bottom-right-radius: 100px;
     margin-bottom: 100px;
 }
 #but{
+
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
+    margin-top: 30px;
+
 }
-.butt{
-    margin-left: 50px;
+.btn1{
+    margin-left: 120px;
 }
 
+ul{
+    margin-top: 50px;
+    list-style: none; 
+    direction: rtl;
+}
+
+h1{
+    align-self: flex-end;
+    font-family: 'Roboto', sans-serif;
+    margin-right: 50px;
+    font-size: 80px;
+}
+
+#boxs{
+    display: flex;
+    justify-content: center;
+    }
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(247, 226, 226);
+}
+
+
+
+
+
+.date-and-time{
+    direction: ltr;
+    display: flex;
+    justify-self: start;
+}
+
+#add-event{
+    position: relative;
+    border-radius: 100%;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-self:start;
+    align-items: center; 
+    font-size: 100px;
+    margin-left: 100px;
+    margin-bottom: 50px;
+}
+#add-text{
+    display: flex;
+    align-self:center;
+    margin-bottom: 20px;
+    margin-right: 10px;
+
+}
