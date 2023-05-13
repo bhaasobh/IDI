@@ -21,7 +21,7 @@ header
 {
 
 position:relative;
-width: 100%;
+width: 1300px;
 height: 176px;
 display: flex   ;
 align-items:flex-end;
@@ -43,7 +43,8 @@ aside
     display: flex;
     direction: rtl;
     font-size: large;
-    width: 330px;
+
+    width: 250px;
     height: 1100px auto;
     border: #f1f1f1;
     background: #f1f1f1;
@@ -90,8 +91,8 @@ main
     background-color:#FFFFFF;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    width: 1050px;
+    height: 848px;
 }
 
 .card{
@@ -131,12 +132,60 @@ direction: rtl;
 width: auto;
 }
 
-.navbar
+
+
+.nav-item{
+    margin-top: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size:x-large;
+}
+.nav-item:hover{
+    background-color:grey;
+}
+body
 {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.navbar
+{
+    width: 1300px;
+    display: flex;
+    position:absolute;
+    align-items: center;
+}
+#logo
+{
+    position: absolute;
+
+
 #btn{
+=======
+    margin-bottom: 140px;
+}
+.profilePic
+{
+    position: absolute;
+  margin-left: 90%;
+  margin-bottom: 170px;
+  height: 100px;
+  border-top-right-radius: 100px;
+border-bottom-left-radius: 100px;
+border-top-left-radius: 100px;
+border-bottom-right-radius: 100px;
+    
+}
+#profileName
+{
+    position: absolute;
+    margin-left: 80%;
+    margin-bottom: 100px;
+}
+#but{
+
     display: flex;
     flex-direction: row;
     margin-top: 30px;
