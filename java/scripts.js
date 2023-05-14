@@ -6,9 +6,10 @@ $(document).ready(function () {
            {  
              const cop = document.getElementById("copCard");        
               let newCop = cop.cloneNode(true);
-             let name =  newCop.getElementsByTagName("h6");
+             let name =  newCop.getElementsByClassName("copName");
              name[0].innerHTML=copsNames[i];
-             console.log(name[0]);
+       
+         
           document.getElementById("copsEvent").append(newCop);
 
   

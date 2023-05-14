@@ -67,6 +67,7 @@ background: #f1f1f1;
     
     background-color:darkgray;
     direction: rtl;
+   
 }
 
 .btn-outline-success{
@@ -215,7 +216,8 @@ h1{
 
 .eventTitle
 {
-    margin-left: 80%;
+    margin-right: 20px;
+   align-self: flex-end;
 }
 #event
 {
@@ -223,8 +225,6 @@ h1{
     flex-direction: row;
     width:90%;
     margin-top: 50px;
-    margin-left: 30px;
-    margin-right: 20px;
     justify-content: space-between;
 }
 #eventMap
@@ -299,8 +299,8 @@ border-radius: 100%;
   }
 #eventActions
 {
-
-    margin: 0px 0px -5px -90px;
+    align-self: center;
+    margin-right: 80px;
 }
 
 #copCard
@@ -316,6 +316,20 @@ border-radius: 100%;
 {
     display: flex;
 }
+
+.riskLevel
+{
+color: red;
+background-color: aqua;
+font-weight: bold;
+}
+
+#btn_deleteEvent
+{
+  
+    align-self: center;
+}
+
 .date-and-time{
     direction: ltr;
     display: flex;
