@@ -59,7 +59,14 @@ background: #f1f1f1;
     position: relative;
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
 
+}
+.eventTitletable
+{
+    
+    background-color:darkgray;
+    direction: rtl;
 }
 
 .btn-outline-success{
@@ -252,6 +259,7 @@ border-radius: 100%;
     display: flex;
     position: absolute;
     margin: 110px 0px -5px -945px;
+    direction: rtl;
 }
 .map-container{
     overflow:hidden;
