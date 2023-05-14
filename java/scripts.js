@@ -1,11 +1,15 @@
 $(document).ready(function () {
 
+
+  var copsNames=["יותם כהן","ניסן לוי","עידו לוגסי","דנה אופיר","נועה כהן"]
  for(i=0;i<5;i++)
            {  
              const cop = document.getElementById("copCard");        
-              const newCop = cop.cloneNode(true);
-  
-    document.getElementById("copsEvent").append(newCop);
+              let newCop = cop.cloneNode(true);
+             let name =  newCop.getElementsByTagName("h6");
+             name[0].innerHTML=copsNames[i];
+             console.log(name[0]);
+          document.getElementById("copsEvent").append(newCop);
 
   
            }
