@@ -217,14 +217,45 @@ h1{
 {
     margin-left: 80%;
 }
+#event
+{
+    display: flex;
+    flex-direction: row;
+    width:90%;
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 20px;
+    justify-content: space-between;
+}
+#eventMap
+{
+    display: flex;
+    margin: 0px 0px 0px 0px;
+}
+#copsEvent
+{
+    display: flex;
+  
+    
+    align-self: flex-end;
+    flex-direction: column;
+      row-gap: 10px;
+}
+#eventDetails
+{
+    display: flex;
+    direction: rtl;
+}
 .copName
 {
     display: flex;
     position: absolute;
     width: 100px;
     margin: 2px 0px 0px 180px;
+   
     direction: rtl;
 }
+
 .copStatusColor
 {
     height: 10px;
@@ -254,13 +285,7 @@ border-radius: 100%;
     position: absolute;
     margin: 22px 0px 0px 220px;
 }
-#eventDetails
-{
-    display: flex;
-    position: absolute;
-    margin: 110px 0px -5px -945px;
-    direction: rtl;
-}
+
 .map-container{
     overflow:hidden;
     padding-bottom:56.25%;
@@ -268,10 +293,8 @@ border-radius: 100%;
    
   }
   .map-container iframe{
-    left: 270px;;
-    top:110px;
-    position: absolute;
-    width: 558px;
+   
+    width: 600px;
     height: 425px;
   }
 #eventActions
@@ -279,15 +302,7 @@ border-radius: 100%;
 
     margin: 0px 0px -5px -90px;
 }
-#copsEvent
-{
-    display: flex;
-    position: absolute;
-    margin-top: 110px;
-    align-self: flex-end;
-    flex-direction: column;
-      row-gap: 10px;
-}
+
 #copCard
 {
     display: flex;
