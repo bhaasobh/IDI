@@ -54,7 +54,14 @@ background: #f1f1f1;
     font-family: 'Roboto', sans-serif;
 }
 
-
+.modal-header 
+{
+    direction: rtl;
+}
+.modal-header .btn-close 
+{
+    display: none;
+}
 #aside-and-main{
     position: relative;
     display: flex;

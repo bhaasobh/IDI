@@ -8,17 +8,12 @@ $(document).ready(function () {
               let newCop = cop.cloneNode(true);
              let name =  newCop.getElementsByClassName("copName");
              name[0].innerHTML=copsNames[i];
-       
-         
           document.getElementById("copsEvent").append(newCop);
-
-  
            }
-  
-    
- 
 
+        
 });
+
 
 
 var flag=0

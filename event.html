@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
   <script src="java/scripts.js"></script>
   <title>Immediate Danger Indicator</title>
@@ -36,10 +37,32 @@
       <main id="main">
        <h5 class="eventTitle">אירוע הפגנה בהבימה</h5>
        <section id="eventActions">
-        <button type="button" class="btn btn-primary">בקש תגבור</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reinforcementsModal">בקש תגבור</button>
+        
         <button type="button" class="btn btn-primary">הזמנת כיבוי אש</button>
         <button type="button" class="btn btn-primary">הזמנת מד"א</button>
         <button type="button" class="btn btn-primary">שלח הודעה לכולם</button>
+ 
+
+
+<!-- Modal -->
+<div class="modal fade" id="reinforcementsModal" tabindex="-1" aria-labelledby="reinforcements" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="reinforcements">בקשת תיגבור</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
        </section>
        <section id="event">
  <section id="eventDetails">
