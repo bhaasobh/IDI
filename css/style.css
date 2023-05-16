@@ -20,39 +20,39 @@ a{
 header
 {
 
-position:relative;
 width: 100%;
-height: 176px;
-display: flex   ;
-align-items:flex-end;
-background: #f1f1f1;
+height: 140px;
+background:rgb(255, 255, 255);
 }
 
 
 #logo
 {
     position: absolute;
-
-    margin-bottom: 140px;
+    margin-bottom: 120px;
 }
+
+
+
 .profilePic
 {
-    position: absolute;
-    margin-left: 93%;
-    margin-bottom: 170px;
-    height: 100px;
-    border-radius: 100%;
-
-    
+   
+    height: 70px;
+    border-radius: 100%;   
+    margin-top: 20px;
 }
 #profileName
 {
     position: absolute;
-    margin-left: 82%;
-    margin-bottom: 100px;
+    display: flex;
+    margin-top: 80px;
+    color: #000000;
     font-size: 30px;
     font-family: 'Roboto', sans-serif;
+    right: 70px;
+   
 }
+
 
 
 #aside-and-main{
@@ -65,13 +65,16 @@ background: #f1f1f1;
 .btn-outline-success{
     border-color:rgb(28, 87, 248);
     color: rgb(28, 87, 248);
-  
   }
 
 .btn-outline-success:hover{
   background-color: rgb(28, 87, 248);
   border-color: rgb(28, 87, 248);
 
+}
+
+.mr-sm-2{
+    margin-right: 10px;
 }
 aside
 {
@@ -80,10 +83,10 @@ aside
     direction: rtl;
     font-size: large;
     width: 330px;
-    height: 1100px auto;
-    border: #f1f1f1;
-    background: #f1f1f1;
-    border-radius: 10px;
+    height: 100vh auto;
+    background:rgb(0, 0, 0);
+    opacity:calc(0.80) ;
+    border-radius: 5px;
 }
 
 .nav-flex-column{
@@ -91,27 +94,26 @@ aside
     position: relative;
 }
 
-/* #exit{
-    display: grid;
-    justify-self: end;
-
-} */
+#exit{
+    display: flex;
+    margin-top:85%;
+    align-self: flex-end;
+}
 
 .nav-link   
 {
-  color: black;
+  color: rgb(255, 255, 255);
 }
 .nav-link:hover{
     color: #fafafa;
-    /* background-color:rgb(192, 192, 192);  */
 }
 
 
 .nav-item{
-    margin-top: 10px;
+    margin-top: 50px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size:x-large;
-    width:100%;
+    font-size:35px;
+    width:330px;
     border-radius: 10px;
 }
 .nav-item:hover{
@@ -123,25 +125,38 @@ main
 {
     
     display: flex;
-    background-color:#FFFFFF;
+    background-color:#dddddd;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 1500px auto;
 }
 
 .card{
     margin-top: 80px;
-    width: 40rem;
-    background-color:rgb(233, 233, 233);
+    width: 70rem;
+    height: 9rem;
+    background-color:rgb(248, 248, 248);
 }
 .card:hover{
-    background-color: rgb(244, 246, 252);
+    background-color: rgb(235, 233, 233);
 
 }
 .card-body{
     margin-right: 20px;
 }
+
+.card-title{
+    color: rgb(25, 5, 199);
+    font-size: 40px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.text-muted{
+    font-size: 25px;
+}
+
+
 
 #icons{
     display: flex;
@@ -156,10 +171,16 @@ main
     color: black;
 }
 
-.icon:hover{
-    color: gray;
+.bi-trash:hover{
+    color:firebrick;
 }
 
+.bi-pencil:hover{
+    color:rgb(5, 202, 5);
+}
+.bi-star:hover{
+    color: gold;
+}
 
 .form-control {
 display:inline ;
@@ -179,7 +200,22 @@ width: auto;
 
 }
 .btn1{
-    margin-left: 120px;
+    margin-left: 90px;
+    display: flex;
+    align-content: center;
+}
+
+#dropdownMenuButton1 {
+
+    width: 130px;
+    height: 50px;
+    font-size: 25px;
+}
+
+.btn-outline-danger{
+    width: 130px;
+    height: 50px;
+    font-size: 20px;
 }
 
 ul{
@@ -199,11 +235,6 @@ h1{
     display: flex;
     justify-content: center;
     }
-.box{
-    width: 100px;
-    height: 100px;
-    background-color: rgb(247, 226, 226);
-}
 
 
 
@@ -213,6 +244,7 @@ h1{
     direction: ltr;
     display: flex;
     justify-self: start;
+    font-size: 25px;
 }
 
 #add-event{
@@ -224,8 +256,9 @@ h1{
     align-self:start;
     align-items: center; 
     font-size: 100px;
-    margin-left: 100px;
+    margin-left: 70px;
     margin-bottom: 50px;
+
 }
 #add-text{
     display: flex;
@@ -234,3 +267,182 @@ h1{
     margin-right: 10px;
 
 }
+
+
+#btnform{
+    width: 100px;
+    height: 50px;
+    margin-top: 20%;
+    margin-left: 50%;
+}
+
+
+form{
+    display: flex;
+    align-self: center;
+}
+
+
+
+
+.modal-header 
+{
+    direction: rtl;
+}
+.modal-header .btn-close 
+{
+    display: none;
+}
+#aside-and-main{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+.eventTitletable
+{
+    
+    background-color:darkgray;
+    direction: rtl;
+   
+}
+
+
+.eventTitle
+{
+    margin-right: 20px;
+    font-size: 40px;
+   align-self: flex-end;
+}
+#event
+{
+    display: flex;
+    flex-direction: row;
+    width:90%;
+    margin-top: 50px;
+    justify-content: space-between;
+}
+#eventMap
+{
+    display: flex;
+    margin: 0px 0px 0px 0px;
+}
+#copsEvent
+{
+    display: flex;
+  
+    
+    align-self: flex-end;
+    flex-direction: column;
+      row-gap: 10px;
+}
+#eventDetails
+{
+    display: flex;
+    direction: rtl;
+}
+.copName
+{
+    display: flex;
+    position: absolute;
+    width: 100px;
+    margin: 2px 0px 0px 180px;
+   
+    direction: rtl;
+}
+
+.copStatusColor
+{
+    height: 10px;
+    width: 10px;
+    background-color:green;
+    position: absolute;
+    border-radius: 100%;
+    margin: 30px 0px 0px 270px;
+
+}
+.copPhoto
+{
+width: 40px;
+height: 40px;
+margin: 0px 0px 0px 287px;
+
+border-radius: 100%;
+}
+#cameraIcon
+{
+    position: absolute;
+    width: 110px;
+    height: 40px;
+    margin: 0px 0px 0px -40px;
+}
+.copStatus
+{
+    position: absolute;
+    margin: 22px 0px 0px 220px;
+}
+
+.map-container{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    
+   
+  }
+  .map-container iframe{
+   
+    width: 600px;
+    height: 425px;
+  }
+#eventActions
+{
+    align-self: center;
+    margin-right: 80px;
+}
+
+#copCard
+{
+    display: flex;
+    margin:0px 10px 0px 0px;
+    height: 80px;
+   align-self: end;
+    width: 350px;
+
+}
+#copBody
+{
+    display: flex;
+}
+
+.riskLevel
+{
+color: red;
+border-radius: 100%;
+background-color: aqua;
+font-weight: bold;
+}
+
+#btn_deleteEvent
+{
+  
+    align-self: center;
+    margin-top: 150px;
+}
+
+.date-and-time{
+    direction: ltr;
+    display: flex;
+    justify-self: start;
+}
+
+tbody{
+    border-color: #000000;
+    width: 20px;
+    height: 10px;
+}
+td{
+    width: 20px;
+    height: 10px;
+
+}
+

@@ -12,7 +12,7 @@ function changebackgrund(){
         }
         if(flag==1){
             obj=document.getElementById("main");
-            obj.style.backgroundColor="#ffff";
+            obj.style.backgroundColor="#dddddd";
             flag=0;
             return;
         }
@@ -20,3 +20,18 @@ function changebackgrund(){
       };
     };
 
+    $(document).ready(function () {
+
+
+        var copsNames=["יותם כהן","ניסן לוי","עידו לוגסי","דנה אופיר","נועה כהן"]
+       for(i=0;i<5;i++)
+                 {  
+                   const cop = document.getElementById("copCard");        
+                    let newCop = cop.cloneNode(true);
+                   let name =  newCop.getElementsByClassName("copName");
+                   name[0].innerHTML=copsNames[i];
+                document.getElementById("copsEvent").append(newCop);
+                 }
+      
+              
+      });
