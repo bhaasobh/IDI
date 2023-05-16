@@ -77,6 +77,19 @@ background: #f1f1f1;
    
 }
 
+.form-check .form-check-input
+{
+    float: right;
+}
+#reinforcements
+{
+    margin-right: 0px;
+}
+#reinforcements_team
+{
+    position: absolute;
+    margin-right: 20px;
+}
 .btn-outline-success{
     border-color:rgb(28, 87, 248);
     color: rgb(28, 87, 248);
@@ -306,8 +319,11 @@ border-radius: 100%;
   }
 #eventActions
 {
-    align-self: center;
-    margin-right: 80px;
+    display: flex;
+    column-gap: 30px;
+    justify-content: center;
+    justify-items: center;
+    margin-right: 10%;
 }
 
 #copCard

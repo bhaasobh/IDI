@@ -11,8 +11,37 @@ $(document).ready(function () {
           document.getElementById("copsEvent").append(newCop);
            }
 
-        
+       $('#submitBtn').click(function() {
+  checked = document.getElementsByName("interests[]");
+  var list = $("input[name='interests[]']:checked").map(function () {
+    return this.value;
+      }).get();
+      alert("תגבור נשלח ל " + list);
+        $('#reinforcementsModal').modal('toggle');
+     
 });
+ 
+$('#Btn_fireman_req').click(function() {
+
+      alert("כיבוי אש הוזמן למיקום ");
+     
+});
+$('#Btn_medical_req').click(function() {
+
+  alert("מדא הוזמנה למיקום");
+ 
+});
+
+
+$("#checkbox_checkAll").click(function() {
+$("#checkbox_hashalom").attr('disabled', !$("#checkbox_hashalom").attr('disabled'));
+$("#checkbox_aria").attr('disabled', !$("#checkbox_aria").attr('disabled'));
+$("#reinforcement_yorashalayem").attr('disabled', !$("#reinforcement_yorashalayem").attr('disabled'));
+  });
+
+
+});
+
 
 
 

@@ -39,8 +39,8 @@
        <section id="eventActions">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reinforcementsModal">בקש תגבור</button>
         
-        <button type="button" class="btn btn-primary">הזמנת כיבוי אש</button>
-        <button type="button" class="btn btn-primary">הזמנת מד"א</button>
+        <button type="button" class="btn btn-primary"  id="Btn_fireman_req">הזמנת כיבוי אש</button>
+        <button type="button" class="btn btn-primary" id="Btn_medical_req" >הזמנת מד"א</button>
         <button type="button" class="btn btn-primary">שלח הודעה לכולם</button>
  
 
@@ -54,15 +54,46 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <ul class="list-group">
+          <li class="list-group-item"><div class="form-check">
+            <input class="form-check-input" type="checkbox" name="interests[]" value="כל הצוותים" id="checkbox_checkAll" >
+            <label class="form-check-label" for="flexCheckDefault" id="reinforcements_team">
+              כל הצוותים
+            </label>
+          </div></li>
+        
+          <li class="list-group-item"><div class="form-check">
+            <input class="form-check-input"  name="interests[]"type="checkbox" value="צוות השלום"  id="checkbox_hashalom"  >
+            <label class="form-check-label" for="flexCheckDefault" id="reinforcements_team">
+              צוות השלום
+            </label>
+          </div></li>
+            <li class="list-group-item">
+            <div class="form-check">
+            <input class="form-check-input"name="interests[]" type="checkbox" value="צוות אריה"  id="checkbox_aria">
+            <label class="form-check-label" for="flexCheckDefault"id="reinforcements_team">
+              צוות אריה
+            </label>
+          </div></li>
+          <li class="list-group-item"><div class="form-check">
+            <input class="form-check-input"    id="reinforcement_yorashalayem"type="checkbox" name="interests[]"value="צוות ירושלים מרכז" >
+            <label class="form-check-label" for="flexCheckDefault"id="reinforcements_team">
+              צוות ירושלים מרכז
+            </label>
+            
+            
+          </div></li>
+          
+        </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">סגור</button>
+        <button type="submit" class="btn btn-primary" id="submitBtn">שלח</button>
       </div>
     </div>
   </div>
 </div>
+
        </section>
        <section id="event">
  <section id="eventDetails">
