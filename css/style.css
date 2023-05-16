@@ -272,7 +272,7 @@ h1{
 #btnform{
     width: 100px;
     height: 50px;
-    margin-top: 100px;
+    margin-top: 20%;
     margin-left: 50%;
 }
 
@@ -282,7 +282,19 @@ form{
     align-self: center;
 }
 
-
+.form-check .form-check-input
+{
+    float: right;
+}
+#reinforcements
+{
+    margin-right: 0px;
+}
+#reinforcements_team
+{
+    position: absolute;
+    margin-right: 20px;
+}
 
 
 .modal-header 
@@ -308,40 +320,6 @@ form{
    
 }
 
-#formTitle
-{
-    width: 100%;
-    float: right;
-}
-span
-{
-    width: 150px;
-    display: flex;
-    justify-content: center;
-}
-#form_firsrow
-{
-    row-gap: 100px;
-    margin-top: 50px;
-    margin-right: 20px;
-}
-#form_columns
-{
-    display: flex;
-    flex-direction: column;
-    row-gap: 50px;
-}
-#form_SecRow
-{
-    display: flex;
-    column-gap: 50px;
-}
-#formTitle >h3
-{
-  margin-top: 20px;
-  margin-right: 20px;
-    float: right;
-}
 
 .eventTitle
 {
@@ -480,3 +458,34 @@ td{
 
 }
 
+
+
+
+@media(max-width:1320px){
+
+    header{
+        background:rgb(0, 0, 0);
+
+    }
+    #profileName
+    {
+   
+    color: #ffffff;
+    
+    }
+    #btn{
+        display: none;
+    }
+
+    .card{
+        width: 50rem;
+    }
+
+    aside{
+      display: none;  
+
+    }
+
+
+   
+}
