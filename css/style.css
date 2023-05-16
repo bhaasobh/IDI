@@ -272,7 +272,7 @@ h1{
 #btnform{
     width: 100px;
     height: 50px;
-    margin-top: 20%;
+    margin-top: 100px;
     margin-left: 50%;
 }
 
@@ -308,6 +308,40 @@ form{
    
 }
 
+#formTitle
+{
+    width: 100%;
+    float: right;
+}
+span
+{
+    width: 150px;
+    display: flex;
+    justify-content: center;
+}
+#form_firsrow
+{
+    row-gap: 100px;
+    margin-top: 50px;
+    margin-right: 20px;
+}
+#form_columns
+{
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+}
+#form_SecRow
+{
+    display: flex;
+    column-gap: 50px;
+}
+#formTitle >h3
+{
+  margin-top: 20px;
+  margin-right: 20px;
+    float: right;
+}
 
 .eventTitle
 {
