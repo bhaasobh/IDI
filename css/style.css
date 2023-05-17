@@ -325,7 +325,17 @@ border-radius: 100%;
     justify-items: center;
     margin-right: 10%;
 }
-
+#send_message_body
+{
+    display: flex;
+    flex-direction: column;
+    direction: rtl;
+    justify-content: right;
+}
+#Textarea_messageAll
+{
+    width: 100%;
+}
 #copCard
 {
     display: flex;

@@ -41,7 +41,7 @@
         
         <button type="button" class="btn btn-primary"  id="Btn_fireman_req">הזמנת כיבוי אש</button>
         <button type="button" class="btn btn-primary" id="Btn_medical_req" >הזמנת מד"א</button>
-        <button type="button" class="btn btn-primary">שלח הודעה לכולם</button>
+        <button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#send_messageModal">שלח הודעה לכולם</button>
  
 
 
@@ -90,6 +90,34 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">סגור</button>
         <button type="submit" class="btn btn-primary" id="submitBtn">שלח</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="send_messageModal" tabindex="-1" aria-labelledby="send_message" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="send_message">שליחת הודעה לכולם</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="send_message_body">
+     <form>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">כותרת ההודעה</label><br>
+          <input type="text" class="form-control" required="true" id="title_messageAll" placeholder="כותרת ההודעה">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">תוכן ההודעה</label><br>
+          <textarea class="form-control" id="Textarea_messageAll" rows="3" required></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">סגור</button>
+        <button type="submit" class="btn btn-primary" id="message_allSubmitBtn">שלח</button>
+      </div>
+    </form>
     </div>
   </div>
 </div>
@@ -217,6 +245,5 @@
       </aside>
     </section>
   </section>
-  <script>changebackgrund()</script>
 </body>
 </html>
