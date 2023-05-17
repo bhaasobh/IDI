@@ -13,7 +13,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="css/style.css">
   <script src="java/scripts.js"></script>
   <title>Immediate Danger Indicator</title>
@@ -22,7 +21,7 @@
     <header>
         <div class="d-flex mb-3">
             <div class="me-auto p-2">
-                <a href="/index.html" id="logo"><img src="images/IDI .png"></a>
+                <a href="index.html" id="logo"><img src="images/IDI.png"></a>
                 <a class="navbar-brand" href="#">
                     <h5 id="logoName"></h5>
                 </a>
@@ -35,21 +34,15 @@
             </div>
         </div>
     </header>
-
     <section id="wrapper">
         <section id="aside-and-main">
           <main id="main">
            <h2 class="eventTitle">אירוע הפגנה בהבימה </h2>
            <section id="eventActions">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reinforcementsModal">בקש תגבור</button>
-            
             <button type="button" class="btn btn-primary"  id="Btn_fireman_req">הזמנת כיבוי אש</button>
             <button type="button" class="btn btn-primary" id="Btn_medical_req" >הזמנת מד"א</button>
             <button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#send_messageModal">שלח הודעה לכולם</button>
-     
-    
-    
-    <!-- Modal -->
     <div class="modal fade" id="reinforcementsModal" tabindex="-1" aria-labelledby="reinforcements" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -65,7 +58,6 @@
                   כל הצוותים
                 </label>
               </div></li>
-            
               <li class="list-group-item"><div class="form-check">
                 <input class="form-check-input"  name="interests[]"type="checkbox" value="צוות השלום"  id="checkbox_hashalom"  >
                 <label class="form-check-label" for="flexCheckDefault" id="reinforcements_team">
@@ -84,10 +76,8 @@
                 <label class="form-check-label" for="flexCheckDefault"id="reinforcements_team">
                   צוות ירושלים מרכז
                 </label>
-                
-                
-              </div></li>
-              
+                </div>
+              </li>
             </ul>
           </div>
           <div class="modal-footer">
@@ -97,8 +87,6 @@
         </div>
       </div>
     </div>
-    
-    <!-- Modal -->
 <div class="modal fade" id="send_messageModal" tabindex="-1" aria-labelledby="send_message" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -125,7 +113,6 @@
       </div>
     </div>
   </div>
-    
            </section>
            <section id="event">
      <section id="eventDetails">
@@ -143,29 +130,22 @@
                   <tr>
                     <td> <h6> סה"כ שוטרים</h6></td>
                     <td>6</td>
-                    
                   </tr>
                   <tr>
                     <td><h6> פעילים</h6></td>
                     <td>5</td>
-                    
                   </tr>
                   <tr>
                     <td><h6>לא פעילים </h6> </td>
                     <td>1</td>
-                    
                   </tr>
                   <tr>
                     <td><h6> רמת סיכון</h6></td>
                     <td class="riskLevel">גבוהה</td>
-                    
                   </tr>
                 </tbody>
               </table>
          </section>
-    
-    
-           
            <section id="eventMap">
             <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
                   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3380.908630089512!2d34.779894154304806!3d32.07171994843628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sil!4v1684015444204!5m2!1sen!2sil" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -176,7 +156,6 @@
             <div class="card-body" id="copBody">
              <h6 class="copName" id="copName">דביר אלעד</h6>
              <img src="images/dvir.jpg" class="copPhoto">
-            
             <div class="copStatusColor"></div>
             <label class="copStatus">מחובר</label>
             <svg id="cameraIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
@@ -185,8 +164,7 @@
         </div>
           </div>
          </section>
-        
-        </section>
+                </section>
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn_deleteEvent">סיים אירוע</button>
          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -200,18 +178,17 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">לא</button>
-                      <a href="/index.html">
+                      <a href="index.html">
                           <button  type="submit" class="btn btn-primary" >כן</button>
                       </a>
           </main>
-
       <aside id="navigation">
         <ul class="nav-flex-column">
           <input class="form-control mr-sm-2" type="search" placeholder="חיפוש" aria-label="חיפוש">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">חיפוש</button>
           <br>
           <li class="nav-item">
-            <a class="nav-link active" href="/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
+            <a class="nav-link active" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
                 fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
                 <path
                   d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z" />
@@ -263,7 +240,6 @@
           </div>
         </ul>
       </aside>
- 
     </section>
   </section>
 </body>

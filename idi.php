@@ -9,7 +9,6 @@
 <body id=php>
     <h2><?php echo "ברוך הבא"?></h2>
     <h3>
-
     שם פעילות: <?php echo $_POST["actname"]?>
     <br>
     סוג פעילות: <?php echo $_POST["acttype"]?>
@@ -28,7 +27,6 @@
     <br>
     תיאור אירוע: <?php echo $_POST["description"]
     ?>;
-
 </h3>
 </body>
 </html>
