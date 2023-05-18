@@ -527,14 +527,15 @@ td{
 
     .profilePic
     {
-       
         height: 50px;
     }
     header{
         
         background:rgb(0, 0, 0);
     }
-
+    .btn1{
+        margin-left: 40px;
+    }
     #form{
         height: 844px;
     }
@@ -544,7 +545,7 @@ td{
     color: #ffffff;
     margin-top: 80px;
     right: 10px;
-    font-size:medium;
+    font-size:10px;
     
     }
 
