@@ -5,14 +5,14 @@ function changebackgrund(){
     document.getElementById("change-background").onclick = function () {
         if (flag==0) {
             
-            obj=document.getElementById("main");
-            obj.style.backgroundColor=" rgb(247, 226, 226)";
+            obj=document.getElementsByTagName("main");
+            obj[0].style.backgroundColor=" rgb(247, 226, 226)";
             flag=1;
             return;
         }
         if(flag==1){
-            obj=document.getElementById("main");
-            obj.style.backgroundColor="#dddddd";
+            obj=document.getElementsByTagName("main");
+            obj[0].style.backgroundColor="#dddddd";
             flag=0;
             return;
         }
@@ -80,7 +80,7 @@ function changebackgrund(){
       
       });
 
-
+  
 
       function sub(){
         document.getElementById("btnform").onclick = function () {
