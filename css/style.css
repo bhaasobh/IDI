@@ -30,6 +30,7 @@ background:rgb(255, 255, 255);
 {
     position: absolute;
     margin-bottom: 120px;
+
 }
 
 
@@ -44,12 +45,14 @@ background:rgb(255, 255, 255);
 #profileName
 {
     position: absolute;
+
     display: flex;
     margin-top: 80px;
     color: #000000;
     font-size: 30px;
     font-family: 'Roboto', sans-serif;
     right: 70px;
+  
    
 }
 
@@ -521,8 +524,12 @@ td{
 
 @media(max-width:984px){
 
- 
 
+    .profilePic
+    {
+       
+        height: 50px;
+    }
     header{
         
         background:rgb(0, 0, 0);
@@ -535,6 +542,9 @@ td{
     {
    
     color: #ffffff;
+    margin-top: 80px;
+    right: 10px;
+    font-size:medium;
     
     }
 
@@ -545,9 +555,18 @@ td{
 
 
     .card{
-        width: 40rem;
+        width: 20rem;
     }
-
+   
+    .card-title{
+        font-size: 20px;
+    }
+    .text-muted{
+        font-size: 15px;
+    }
+    .date-and-time{
+        font-size: 15px;
+    }
     aside{
       display: none;  
 
@@ -574,10 +593,8 @@ td{
 
     .nav-item{
         margin-top: 20px;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         font-size:30px;
         width:330px;
-        border-radius: 10px;
     }
 
     #exit{
@@ -610,14 +627,14 @@ td{
         margin:0px 10px 0px 0px;
         height: 80px;
        align-self: end;
-        width: 620px;
+        width: 320px;
     
     }
     .copPhoto
     {
     width: 40px;
     height: 40px;
-    margin: 0px 0px 0px 547px;
+    margin: 0px 0px 0px 247px;
 
     border-radius: 100%;
     }
@@ -627,7 +644,7 @@ td{
     display: flex;
     position: absolute;
     width: 100px;
-    margin: 10px 0px 0px 440px;
+    margin: 10px 0px 0px 140px;
    
     direction: rtl;
 }
@@ -635,13 +652,13 @@ td{
 .copStatus
 {
     position: absolute;
-    margin: 25px 0px 0px 480px;
+    margin: 25px 0px 0px 180px;
 }
 
 
 .copStatusColor
 {
-    margin: 34px 0px 0px 530px;
+    margin: 34px 0px 0px 230px;
 
 }
 
