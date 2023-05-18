@@ -357,6 +357,7 @@ span
 }
 
 
+
 .eventTitle
 {
     margin-right: 20px;
@@ -365,7 +366,7 @@ span
 #event
 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width:90%;
     margin-top: 50px;
     justify-content: space-between;
@@ -520,10 +521,7 @@ td{
 
 @media(max-width:984px){
 
-    main{
-        display: flex;
-        flex-wrap: wrap;
-    }
+ 
 
     header{
         
@@ -612,14 +610,14 @@ td{
         margin:0px 10px 0px 0px;
         height: 80px;
        align-self: end;
-        width: 220px;
+        width: 620px;
     
     }
     .copPhoto
     {
     width: 40px;
     height: 40px;
-    margin: 0px 0px 0px 147px;
+    margin: 0px 0px 0px 547px;
 
     border-radius: 100%;
     }
@@ -629,7 +627,7 @@ td{
     display: flex;
     position: absolute;
     width: 100px;
-    margin: 10px 0px 0px 40px;
+    margin: 10px 0px 0px 440px;
    
     direction: rtl;
 }
@@ -637,13 +635,13 @@ td{
 .copStatus
 {
     position: absolute;
-    margin: 25px 0px 0px 80px;
+    margin: 25px 0px 0px 480px;
 }
 
 
 .copStatusColor
 {
-    margin: 34px 0px 0px 130px;
+    margin: 34px 0px 0px 530px;
 
 }
 

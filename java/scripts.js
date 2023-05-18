@@ -48,6 +48,22 @@ function changebackgrund(){
             alert("כיבוי אש הוזמן למיקום ");
            
       });
+      
+      $('#message_allSubmitBtn').click(function() {
+      
+       var title = $("#title_messageAll").val();
+       var message = $("title_messageAll").val();
+      if(title == "" || message =="")
+      {
+        console.log("bahaa");
+        
+      }
+      else
+      {
+      
+      }
+       
+      });
       $('#Btn_medical_req').click(function() {
       
         alert("מדא הוזמנה למיקום");
