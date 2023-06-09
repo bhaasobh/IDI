@@ -210,7 +210,13 @@ width: auto;
     align-content: center;
 }
 
-#dropdownMenuButton1 {
+#dropdownMenuSorting {
+
+    width: 130px;
+    height: 50px;
+    font-size: 25px;
+}
+#dropdownMenuFilter {
 
     width: 130px;
     height: 50px;
@@ -329,7 +335,7 @@ span
 {
     margin-right: 0px;
 }
-#reinforcements_team
+.reinforcements_team
 {
     position: absolute;
     margin-right: 20px;
@@ -388,7 +394,7 @@ span
     flex-direction: column;
       row-gap: 10px;
 }
-#eventDetails
+.eventDetails
 {
     display: flex;
     direction: rtl;
@@ -619,7 +625,7 @@ td{
         font-size: 30px;
         margin-top: 20px;
     }
-    #eventDetails{
+    .eventDetails{
         display: none;
     }
     #copCard

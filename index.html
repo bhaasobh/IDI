@@ -36,7 +36,6 @@
           </div>
           <div class="offcanvas-body small">
             <ul class="nav-flex-column">
-              <br>
               <li class="nav-item">
                 <a class="nav-link active" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="35"
                     height="30" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
@@ -78,22 +77,24 @@
                       d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
                   </svg> היסטרית התראות </a>
               </li>
-              <div id="exit">
+             
                 <li class="nav-item">
+                   <div id="exit">
                   <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
                       fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
                       <path
                         d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z" />
                       <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z" />
                     </svg> יציאה</a>
-                </li>
-              </div>
+                   </div>
+                  </li>
+           
             </ul>
           </div>
         </div>
       </section>
       <div class="me-auto p-2">
-        <a href="index.html" id="logo"><img src="images/IDI .png"></a>
+        <a href="index.html" id="logo"><img src="images/IDI.png" alt="logo"></a>
         <a class="navbar-brand" href="#">
           <h5 id="logoName"></h5>
         </a>
@@ -102,12 +103,12 @@
         <h6 id="profileName">שלום רש"ט דנית</h6>
       </div>
       <div class="p-2">
-        <img src="images/da.png" class="profilePic">
+        <img src="images/da.png" alt="dvir photo" class="profilePic">
       </div>
     </div>
   </header>
-  <section id="wrapper">
-    <section id="aside-and-main">
+  <div id="wrapper">
+    <div id="aside-and-main">
       <main>
         <h2>ראשי</h2>
         <div id="btn">
@@ -116,7 +117,7 @@
           </div>
           <div class="btn1">
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuSorting"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 מיון
               </button>
@@ -129,7 +130,7 @@
           </div>
           <div class="btn1">
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuFilter"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 סינון
               </button>
@@ -143,12 +144,13 @@
         <div id="boxs">
           <ul>
             <li>
-              <a href="event.html?eventId=1">
+              
                 <div class="card">
 
                   <div class="card-body">
                     <div class="row">
                       <div class="col-9">
+              <a href="event.html?eventId=1">
                         <h4 class="card-title">הפגנה בהבימה תל אביב</h4>
                         <h5 class="card-subtitle mb-2 text-muted">שוטרים פעילים:8</h5>
                         <h5 class="card-subtitle mb-2 text-muted">רמת סיכון:גבוהה</h5>
@@ -187,6 +189,8 @@
           </div>
         </div>
         </div>
+                  </div>
+                </div>
         </li>
         <li>
           <a href="event.html?eventId=2">
@@ -390,8 +394,8 @@
           </div>
         </ul>
       </aside>
-    </section>
-  </section>
+    </div>
+  </div>
   <script>changebackgrund()</script>
 </body>
 </html>

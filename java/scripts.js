@@ -39,7 +39,7 @@ function changebackgrund(){
           return this.value;
             }).get();
             alert("תגבור נשלח ל " + list);
-              $('#reinforcementsModal').modal('toggle');
+              $('.reinforcementsModal').modal('toggle');
            
       });
        
@@ -78,9 +78,12 @@ function changebackgrund(){
         });
       
       
+       
+
       });
 
-  
+   
+
 
       function sub(){
         document.getElementById("btnform").onclick = function () {
@@ -104,6 +107,8 @@ function changebackgrund(){
               if (temp4=="") {
                   document.getElementById("force").classList.add("is-invalid")
                }
+         
+        
         }
     
     }
