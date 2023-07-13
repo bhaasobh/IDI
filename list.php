@@ -1,17 +1,25 @@
 <?php
 include "config.php";
-// session_start();
+include "db.php";
 
-//     if(!isset($_SESSION["user_id"])) {
-//         // echo 'no user id';
-//         header('Location: ' . URL . 'index.php');
-//     } else {
-//         echo 'user id exists: ' . $_SESSION["user_id"] ;
-//     }
-//     $model = mysqli_query($connection, $query);
-//     if(!$model) {
-//         die("DB query failed.");
-//     }
+
+session_start();
+
+    if(!isset($_SESSION["user_id"])) {
+        // echo 'no user id';
+        header('Location: ' . URL . 'index.php');
+    } else {
+      //  echo 'user id exists: ' . $_SESSION["user_id"] ;
+        $userID = $_SESSION["user_id"] ;
+        $query  = "SELECT * FROM tbl_206_users WHERE id=" . $userID;
+      // echo $query;
+        $result = mysqli_query($connection , $query);
+        $row    = mysqli_fetch_array($result);
+    }
+   //$model = mysqli_query($connection, $query);
+   //if(!$model) {
+    //   die("DB query failed.");
+   //}
 ?>
 
 <!DOCTYPE html>
@@ -114,10 +122,10 @@ include "config.php";
         </a>
       </div>
       <div class="p-2">
-        <h6 id="profileName">שלום רש"ט דנית</h6>
+        <h6 id="profileName">שלום  <?php echo $row["Rank"]. " ". $row["name"] ?></h6>
       </div>
       <div class="p-2">
-        <img src="images/da.png" class="profilePic" alt="danit" title="danit">
+        <img src="<?php echo $row["photo_path"] ?>" class="profilePic" alt="danit" title="danit">
       </div>
     </div>
   </header>

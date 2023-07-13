@@ -2,7 +2,6 @@
 include "config.php";
 include "db.php";
 session_start();
-
 if(!empty($_POST["loginMail"])) {
     $query  = "SELECT * FROM tbl_206_users WHERE email='" 
         . $_POST["loginMail"] 
@@ -12,11 +11,10 @@ if(!empty($_POST["loginMail"])) {
 
     $result = mysqli_query($connection , $query);
     $row    = mysqli_fetch_array($result);
-
+    $message = "debug !";
     if(is_array($row)) {
         session_start();
-        $_SESSION["user_id"] = $row['user_id'];
-
+        $_SESSION["user_id"] = $row['id'];
         header('Location: ' . URL . 'list.php');
     } else {
         $message = "Invalid username or password !";
@@ -43,16 +41,16 @@ if(!empty($_POST["loginMail"])) {
     <div id = "login-card">   
         <div class="container">
             <h1 id ="header">כניסה</h1>
-            <form action="#" method="post" id="frm">
+            <form action="" method="post" id="frm">
                 <div class="mb-3 input">
                     <label for="exampleInputEmail1" class="form-label">אימייל: </label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" name="loginMail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 <div class="mb-3 input">
                     <label for="exampleInputPassword1" class="form-label">סיסמה:</label>
-                     <input type="password" class="form-control" id="exampleInputPassword1">
+                     <input type="password" name = "loginPass" class="form-control" id="exampleInputPassword1">
                 </div>
                 <button type="submit" class="btn btn-primary logbtn">התחבר</button>
-                <div class="error-message"><?php if(isset($message)) { echo $message; } ?></div>   
+                <div class="error-message"><?php if(isset($message)) { echo $message; } ;  ?></div>   
             </form>
         </div>
     </div>
