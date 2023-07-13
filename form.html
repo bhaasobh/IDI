@@ -37,9 +37,8 @@
           </div>
           <div class="offcanvas-body small">
             <ul class="nav-flex-column">
-              <br>
               <li class="nav-item">
-                <a class="nav-link active" href="/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="35"
+                <a class="nav-link active" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="35"
                     height="30" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
                     <path
                       d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z" />
@@ -79,7 +78,7 @@
                       d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
                   </svg> היסטרית התראות </a>
               </li>
-              <div id="exit">
+              <div class="exit">
                 <li class="nav-item">
                   <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
                       fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
@@ -87,35 +86,30 @@
                         d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z" />
                       <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z" />
                     </svg> יציאה</a>
-
-
+                  </div>
                 </li>
-              </div>
             </ul>
           </div>
         </div>
       </section>
       <div class="me-auto p-2">
-        <a href="/index.html" id="logo"><img src="images/IDI .png"></a>
+        <a href="index.html" id="logo" alt="IDI" title="IDI"></a>
         <a class="navbar-brand" href="#">
-          <h5 id="logoName"></h5>
         </a>
       </div>
       <div class="p-2">
         <h6 id="profileName">שלום רש"ט דנית</h6>
       </div>
       <div class="p-2">
-        <img src="images/da.png" class="profilePic">
+        <img src="images/da.png" class="profilePic" alt="danit" title="danit">
       </div>
     </div>
   </header>
-
-
   <section id="wrapper">
     <section id="aside-and-main">
       <main id="main">
         <h2>הוספת אירוע חדש</h2>
-                <form  action="http://localhost:80/idi.php" method="post"  class="form-check" >
+                <form  action="idi.php" method="post"  class="form-check" >
                 <br><br><br>
                 <div class="row d-lg-column-reverse">
                 <div class="col-lg-6">
@@ -161,7 +155,7 @@
                     <span class="input-group-text">כמות כוחות</span>
                 </div><br><br>
                 <div class="input-group mb-3 input-group-lg">
-                    <select class="form-select" name="risk" id="inputGroupSelect02"style="direction: rtl;">
+                    <select class="form-select" name="risk" id="inputGroupSelect02" style="direction: rtl;">
                       <option selected >בחר</option>
                       <option value="נמוכה">נמוכה</option>
                       <option value="בינונית">בינונית</option>
@@ -172,27 +166,22 @@
                 <br>
             </div>
             <div class="input-group input-group-lg">
-                <textarea name="description" row="10" cols="50" class="form-control"></textarea> 
+                <textarea name="description"  cols="50" class="form-control"></textarea> 
                 <span class="input-group-text">תיאור אירוע</span>
             </div><br><br>
             <button id="btnform" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 אישור
               </button>
                     </div>
-                  </div>
-                </div>
-              </div>
             </form>
       </main>
-
-
       <aside id="navigation">
         <ul class="nav-flex-column">
           <input class="form-control mr-sm-2" type="search" placeholder="חיפוש" aria-label="חיפוש">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">חיפוש</button>
           <br>
           <li class="nav-item">
-            <a class="nav-link active" href="/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
+            <a class="nav-link active" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
                 fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
                 <path
                   d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z" />
@@ -206,7 +195,7 @@
                 <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z" />
                 <path
                   d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
-              </svg> היסטוריה אירועים </a>
+              </svg> היסטוריית אירועים </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
@@ -230,9 +219,9 @@
                 <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z" />
                 <path
                   d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
-              </svg> היסטרית התראות </a>
+              </svg> היסטוריית התראות </a>
           </li>
-          <div id="exit">
+          <div class="exit">
             <li class="nav-item">
               <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
                   fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
