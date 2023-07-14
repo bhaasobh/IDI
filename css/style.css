@@ -380,9 +380,7 @@ span
 #copsEvent
 {
     display: flex;
-  
-    
-    align-self: flex-end;
+    align-self: flex-start;
     flex-direction: column;
       row-gap: 10px;
 }
@@ -452,7 +450,7 @@ border-radius: 100%;
     margin-right:10%;
 }
 
-#copCard
+.copCard
 {
     display: flex;
     margin:0px 10px 0px 0px;
@@ -481,7 +479,7 @@ border-radius: 100%;
     width: 400px;
 
 }
-#copBody
+.copBody
 {
     display: flex;
 }
@@ -653,7 +651,7 @@ td{
     #eventDetails{
         display: none;
     }
-    #copCard
+    .copCard
     {
         display: flex;
         margin:0px 10px 0px 0px;

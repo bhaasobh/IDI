@@ -105,7 +105,7 @@ session_start();
               </li>
               <div class="exit">
                 <li class="nav-item">
-                  <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
+                  <a class="nav-link" href="index.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
                       fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
                       <path
                         d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z" />
@@ -258,13 +258,13 @@ session_start();
                   <td>
                     <h6> פעילים</h6>
                   </td>
-                  <td>5</td>
+                  <td>6</td>
                 </tr>
                 <tr>
                   <td>
                     <h6>לא פעילים </h6>
                   </td>
-                  <td>1</td>
+                  <td>0</td>
                 </tr>
                 <tr>
                   <td>
@@ -289,9 +289,9 @@ session_start();
               <section id="copsEvent">
                 <?php
                  while($row_officers = mysqli_fetch_assoc($result_officers)){
-            echo '<div class="card" id="copCard">
-                <div class="card-body" id="copBody">
-                  <h6 class="copName" id="copName">' . $row_officers["name"] . '</h6>
+                   echo '<div class="card copCard">
+                  <div class="card-body copBody">
+                  <h6 class="copName" >' . $row_officers["name"] . '</h6>
                   <img src="'. $row_officers["photo_path"] . '" class="copPhoto">
                   <div class="copStatusColor"></div>
                   <label class="copStatus">מחובר</label>
@@ -304,7 +304,6 @@ session_start();
               </div>';
                  }
                 ?>
-             
             </section>
         </div>
           <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -374,7 +373,7 @@ session_start();
             </li>
             <div class="exit">
               <li class="nav-item">
-                <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
+                <a class="nav-link" href="index.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
                   fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
                   <path
                     d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z" />
