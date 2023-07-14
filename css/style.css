@@ -516,10 +516,43 @@ td{
     height: 10px;
 
 }
+#login{
+    display: grid;
+}
+#login-card{
+    position: relative;
+    display: grid;
+    background-color: #e1dfdf;
+    width: 300px;
+    height: 300px;
+    justify-self: center;
+    align-self: center;
+    border-radius: 10px;
+    top: 120px;
+    direction: ltr;
+}
+.container{
+    display: grid;
+    justify-items: center;
+}
+#title{
+    position: absolute;
+}
 
+#login{
+    background-color: #000000;
+     background-image: url("../images/IDI.png");
+     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position-x:center;
+}
 
-
-
+#logbtn{
+    justify-self: center;
+}
+#log{
+    display:grid;
+}
 @media(max-width:984px){
 
 

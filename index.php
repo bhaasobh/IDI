@@ -40,17 +40,21 @@ if(!empty($_POST["loginMail"])) {
 <body id="login">
     <div id = "login-card">   
         <div class="container">
-            <h1 id ="header">כניסה</h1>
-            <form action="" method="post" id="frm">
-                <div class="mb-3 input">
-                    <label for="exampleInputEmail1" class="form-label">אימייל: </label>
-                    <input type="email" name="loginMail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div class="mb-3 input">
-                    <label for="exampleInputPassword1" class="form-label">סיסמה:</label>
-                     <input type="password" name = "loginPass" class="form-control" id="exampleInputPassword1">
-                </div>
-                <button type="submit" class="btn btn-primary logbtn">התחבר</button>
-                <div class="error-message"><?php if(isset($message)) { echo $message; } ;  ?></div>   
+            <h1 id ="title">כניסה</h1>
+            <form action="" method="post" id="frmlog">
+                <section id="log">
+                    <div class="mb-3 input">
+                        <label for="exampleInputEmail1" class="form-label" ></label>
+                        <input type="email" name="loginMail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="אימייל">
+                        </div>
+                    <div class="mb-3 input">
+                        <label for="exampleInputPassword1" class="form-label" ></label>
+                         <input type="password" name = "loginPass" class="form-control" id="exampleInputPassword1" placeholder="סיסמה">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="logbtn">התחבר</button>
+                </section>
+                <div class="error-message">
+                    <?php if(isset($message)) { echo $message; } ;  ?></div>   
             </form>
         </div>
     </div>
