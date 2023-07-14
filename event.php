@@ -1,3 +1,29 @@
+<?php
+include "config.php";
+include "db.php";
+
+
+session_start();
+
+    if(!isset($_SESSION["user_id"])) {
+        header('Location: ' . URL . 'index.php');
+    } else {
+      $event_id    	= $_GET['eventId'];
+     // echo 'eventd id ' . $event_id ;
+         $query_officers  = "SELECT * from tbl_206_officers where event_id=".$event_id.";";
+        // echo $query_officers;
+         $result_officers = mysqli_query($connection , $query_officers);
+         $query_event = "SELECT * FROM tbl_206_events e join tbl_206_officers o on e.offcer_owner = o.officer_id where e.event_id =".$event_id.";";
+         // echo $query_event;
+         $result_event = mysqli_query($connection , $query_event);
+         $row_event    = mysqli_fetch_array($result_event);
+        
+
+    }
+    ?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +133,7 @@
   <section id="wrapper">
     <section id="aside-and-main">
       <main>
-        <h2 class="eventTitle">אירוע הפגנה בהבימה </h2>
+        <h2 class="eventTitle"> <?php echo $row_event["title"] ;?> </h2>
         <section id="eventActions">
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reinforcementsModal">בקש
             תגבור</button>
@@ -207,8 +233,11 @@
 
             <section id="eventDetails">
               <table class="table table-hover">
-              <thead>
+               <?php
+
+                  echo '<thead>
                 <tr class="eventTitletable">
+                 
                   <th scope="col" colspan="2">הפגנה בהבימה</th>
                 </tr>
               </thead>
@@ -217,13 +246,13 @@
                   <td>
                     <h6> קצין אחראי </h6>
                   </td>
-                  <td>דביר אלעד</td>
+                  <td>'.$row_event["name"].'</td>
                 </tr>
                 <tr>
                   <td>
                     <h6> סה"כ שוטרים</h6>
                   </td>
-                  <td>6</td>
+                  <td>'.$row_event["officer_quantity"].'</td>
                 </tr>
                 <tr>
                   <td>
@@ -241,9 +270,12 @@
                   <td>
                     <h6> רמת סיכון</h6>
                   </td>
-                  <td class="riskLevel">גבוהה</td>
+                  <td class="riskLevel">'.$row_event["risk_level"].'</td>
                 </tr>
-              </tbody>
+              </tbody>';
+
+                  ?>
+              
             </table>
           </section>
             <section id="eventMap">
@@ -255,10 +287,12 @@
                 </div>
               </section>
               <section id="copsEvent">
-                <div class="card" id="copCard">
+                <?php
+                 while($row_officers = mysqli_fetch_assoc($result_officers)){
+            echo '<div class="card" id="copCard">
                 <div class="card-body" id="copBody">
-                  <h6 class="copName" id="copName">דביר אלעד</h6>
-                  <img src="images/dvir.jpg" class="copPhoto">
+                  <h6 class="copName" id="copName">' . $row_officers["name"] . '</h6>
+                  <img src="'. $row_officers["photo_path"] . '" class="copPhoto">
                   <div class="copStatusColor"></div>
                   <label class="copStatus">מחובר</label>
                   <svg id="cameraIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -267,7 +301,10 @@
                     d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z" />
                   </svg>
                 </div>
-              </div>
+              </div>';
+                 }
+                ?>
+             
             </section>
         </div>
           <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"

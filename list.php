@@ -11,19 +11,15 @@ session_start();
     } else {
       //  echo 'user id exists: ' . $_SESSION["user_id"] ;
         $userID = $_SESSION["user_id"] ;
-        $query  = "SELECT * FROM tbl_206_events";
-        $query1  = "SELECT * FROM tbl_206_users WHERE id=" . $userID;
+        $query_events  = "SELECT * FROM tbl_206_events";
+        $query_user  = "SELECT * FROM tbl_206_users WHERE id=" . $userID;
       // echo $query;
-        $result = mysqli_query($connection , $query);
-        $row    = mysqli_fetch_array($result);
-        $result1 = mysqli_query($connection , $query1);
-        $row1    = mysqli_fetch_array($result1);
+        $result_events = mysqli_query($connection , $query_events);
+       // $row_events    = mysqli_fetch_array($result_events);
+        $result_user = mysqli_query($connection , $query_user);
+        $row_user    = mysqli_fetch_array($result_user);
     }
-   //$model = mysqli_query($connection, $query);
-   //if(!$model) {
-    //   die("DB query failed.");
-   //}
-?>
+    ?>
 
 <!DOCTYPE html>
 <html>
@@ -125,10 +121,10 @@ session_start();
         </a>
       </div>
       <div class="p-2">
-        <h6 id="profileName">שלום  <?php echo $row1["Rank"]. " ". $row1["name"] ?></h6>
+        <h6 id="profileName">שלום  <?php echo $row_user["Rank"]. " ". $row_user["name"] ?></h6>
       </div>
       <div class="p-2">
-        <img src="<?php echo $row1["photo_path"] ?>" class="profilePic" alt="danit" title="danit">
+        <img src="<?php echo $row_user["photo_path"] ?>" class="profilePic" alt="danit" title="danit">
       </div>
     </div>
   </header>
@@ -169,22 +165,22 @@ session_start();
         <div id="boxs">
           <ul>
           <?php
-            while($row = mysqli_fetch_assoc($result)){
+            while($row_events = mysqli_fetch_assoc($result_events)){
               echo    '<li>';
-              echo    	'<a href="event.php?eventId=' . $row["event_id"] . '"</a>';
+              echo    	'<a href="event.php?eventId=' . $row_events["event_id"] . '"</a>';
               echo        '<div class="card">';
               echo          '<div class="card-body">';
               echo             '<div class="row">';
               echo                '<div class="col-9">';
-              echo                '<h4 class="card-title">'.$row["title"].'</h4>';
-              echo                '<h5 class="card-subtitle mb-2 text-muted">שוטרים פעילים:'.$row["officer_quantity"].'</h5>';
-              echo                 '<h5 class="card-subtitle mb-2 text-muted">רמת סיכון:'.$row["risk_level"].'</h5>';
+              echo                '<h4 class="card-title">'.$row_events["title"].'</h4>';
+              echo                '<h5 class="card-subtitle mb-2 text-muted">שוטרים פעילים:'.$row_events["officer_quantity"].'</h5>';
+              echo                 '<h5 class="card-subtitle mb-2 text-muted">רמת סיכון:'.$row_events["risk_level"].'</h5>';
               echo                  '</div>';
               echo                   '<div class="col-3">';
               echo                    ' <p class="date-and-time">'
-                                         .$row["date"].
+                                         .$row_events["date"].
                                          '<br>'
-                                       .$row["time_start"].
+                                       .$row_events["time_start"].
                                         '</p>';
               echo                      '<div class="icons">';
               echo                        '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
