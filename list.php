@@ -11,8 +11,10 @@ session_start();
     } else {
       
         $userID = $_SESSION["user_id"] ;
+
+        echo $userID;
         $query_events  = "SELECT * FROM tbl_206_events";
-        $query_user  = "SELECT * FROM tbl_206_users WHERE id=" . $userID;
+        $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
      
         $result_events = mysqli_query($connection , $query_events);
      
@@ -120,7 +122,7 @@ session_start();
         </a>
       </div>
       <div class="p-2">
-        <h6 id="profileName">שלום  <?php echo $row_user["Rank"]. " ". $row_user["name"] ?></h6>
+        <h6 id="profileName">שלום  <?php echo $row_user["rank"]. " ". $row_user["first_name"]." ". $row_user["last_name"] ?></h6>
       </div>
       <div class="p-2">
         <img src="<?php echo $row_user["photo_path"] ?>" class="profilePic" alt="danit" title="danit">
@@ -172,7 +174,7 @@ session_start();
               echo             '<div class="row">';
               echo                '<div class="col-9">';
               echo                '<h4 class="card-title">'.$row_events["title"].'</h4>';
-              echo                '<h5 class="card-subtitle mb-2 text-muted">שוטרים פעילים:'.$row_events["officer_quantity"].'</h5>';
+              echo                '<h5 class="card-subtitle mb-2 text-muted">שוטרים פעילים:'.$row_events["officer_qty"].'</h5>';
               echo                 '<h5 class="card-subtitle mb-2 text-muted">רמת סיכון:'.$row_events["risk_level"].'</h5>';
               echo                  '</div>';
               echo                   '<div class="col-3">';

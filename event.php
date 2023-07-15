@@ -12,7 +12,7 @@ session_start();
          $query_officers  = "SELECT * from tbl_206_officers where event_id=".$event_id.";";
 
          $result_officers = mysqli_query($connection , $query_officers);
-         $query_event = "SELECT * FROM tbl_206_events e join tbl_206_officers o on e.offcer_owner = o.officer_id where e.event_id =".$event_id.";";
+         $query_event = "select * from tbl_206_events e inner join tbl_206_officers o on e.offcer_owner = o.officer_id where e.event_id =".$event_id.";";
         
          $result_event = mysqli_query($connection , $query_event);
          $row_event    = mysqli_fetch_array($result_event);
@@ -245,13 +245,13 @@ session_start();
                   <td>
                     <h6> קצין אחראי </h6>
                   </td>
-                  <td>'.$row_event["name"].'</td>
+                  <td>'.$row_event["first_name"]." ".$row_event["last_name"].'</td>
                 </tr>
                 <tr>
                   <td>
                     <h6> סה"כ שוטרים</h6>
                   </td>
-                  <td>'.$row_event["officer_quantity"].'</td>
+                  <td>'.$row_event["officer_qty"].'</td>
                 </tr>
                 <tr>
                   <td>
@@ -290,7 +290,7 @@ session_start();
                  while($row_officers = mysqli_fetch_assoc($result_officers)){
                    echo '<div class="card copCard">
                   <div class="card-body copBody">
-                  <h6 class="copName" >' . $row_officers["name"] . '</h6>
+                  <h6 class="copName" >' . $row_officers["first_name"] ." ". $row_officers["last_name"]  . '</h6>
                   <img src="'. $row_officers["photo_path"] . '" class="copPhoto">
                   <div class="copStatusColor"></div>
                   <label class="copStatus">מחובר</label>
