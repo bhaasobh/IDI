@@ -74,21 +74,21 @@ function changebackgrund(){
            
         const submit = document.querySelector('#btnform');
         const form = document.querySelector('#add_event_form');
-
-      submit.addEventListener('click', (e) => {
-      e.preventDefault();
-      document.getElementById("btnform").innerHTML = "טוען...";
+        form.addEventListener('submit', (e) => {
+        e.preventDefault();
+    
       savePost();
-});
+      });
 
-const savePost = async () => {
-    try {
-        let response = await fetch('action.php', {
+      const savePost = () => {
+        try {
+          fetch('action.php', {
             method: 'POST',
             body: new FormData(form)
-        });
+         });
+         document.getElementById("btnform").innerHTML = "טוען...";
         window.location.replace("list.php");
-    } catch (error) {
+       } catch (error) {
         console.log(error);
     }
 };

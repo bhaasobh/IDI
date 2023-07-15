@@ -13,7 +13,7 @@ session_start();
         $userID = $_SESSION["user_id"] ;
 
         echo $userID;
-        $query_events  = "SELECT * FROM tbl_206_events";
+        $query_events  = "SELECT * FROM tbl_206_events order by date,time_start";
         $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
      
         $result_events = mysqli_query($connection , $query_events);

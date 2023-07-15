@@ -14,7 +14,7 @@
 		$description  = mysqli_real_escape_string($connection, $_POST['description']);
 		$risk_level  = mysqli_real_escape_string($connection, $_POST['risk']);
 		
-		$query2 = "insert into tbl_206_events(title,event_type,location,officer_quantity,date,risk_level,time_start,description,offcer_owner) values
+		$query2 = "insert into tbl_206_events(title,event_type,location,officer_qty,date,risk_level,time_start,description,offcer_owner) values
 		 ('$actname','$event_type','$location','$officer_quantity','$date','$risk_level','$start_time','$description','$offcer_owner')";
 		$result = mysqli_query($connection, $query2);
 
