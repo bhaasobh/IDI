@@ -4,7 +4,7 @@ $dbuser = "dbusrShnkr23";
 $dbpass = "studDBpwWeb2!";
 $dbname = "dbShnkr23stud2";
 $connection = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
-$connection->set_charset("utf8");
+$connection->set_charset("utf8"); //hebrew support
 
 
 if(mysqli_connect_errno()) {
