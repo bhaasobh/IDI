@@ -8,7 +8,7 @@ session_start();
     if(!isset($_SESSION["user_id"])) {
         header('Location: ' . URL . 'index.php');
     } else {
-      $event_id    	= $_GET['eventId'];
+          $event_id = $_GET['eventId'];
          $query_officers  = "SELECT * from tbl_206_officers where event_id=".$event_id.";";
 
          $result_officers = mysqli_query($connection , $query_officers);
