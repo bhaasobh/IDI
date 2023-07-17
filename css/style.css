@@ -8,6 +8,7 @@ header, main, footer, nav, aside, section, div  {
 
 }
 a{
+    display: contents;
     text-decoration: none;
 }
 #wrapper
@@ -142,6 +143,7 @@ main
 
 
 .card{
+    display: flex;
     margin-top: 80px;
     width: 70rem;
     height: 9rem;
@@ -174,10 +176,15 @@ main
 }
 
 
+
+
 .bi-trash:hover{
     color:firebrick;
 }
-
+.bi-pencil{
+    height: 30px;
+    width: 30px;
+}
 .bi-pencil:hover{
     color:rgb(5, 202, 5);
 }

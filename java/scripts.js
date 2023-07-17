@@ -72,59 +72,25 @@ function changebackgrund(){
 
       function sub(){
            
-        document.getElementById("btnform").onclick = function () {
-       let check = true;
-        let temp=document.getElementsByName('actname')[0].value;
-            if (temp=="") {
-                document.getElementById("name").classList.add("is-invalid");
-                check = false; check = false;
-             }
-             let temp1=document.getElementsByName('date')[0].value;
-            if (temp1=="") {
-                document.getElementById("date").classList.add("is-invalid");
-                check = false;
-             }
-             let temp2=document.getElementsByName('loc')[0].value;
-             if (temp2=="") {
-                 document.getElementById("loc").classList.add("is-invalid");
-                 check = false;
-              }
-              let temp3=document.getElementsByName('officer')[0].value;
-              if (temp3=="") {
-                  document.getElementById("officer").classList.add("is-invalid");
-                  check = false;
-               }
-               let temp4=document.getElementsByName('force_Qty')[0].value;
-              if (temp4=="") {
-                  document.getElementById("force").classList.add("is-invalid")
-                  check = false;
-               }
-
-
-              if(check)
-              {
-               document.getElementById("btnform").innerHTML = "טוען...";
-                savePost();
-              }
-      
-        }
+        const submit = document.querySelector('#btnform');
+        const form = document.querySelector('#add_event_form');
+        form.addEventListener('submit', (e) => {
+        e.preventDefault();
     
+      savePost();
+      });
+
+      const savePost = () => {
+        try {
+          fetch('action.php', {
+            method: 'POST',
+            body: new FormData(form)
+         });
+         document.getElementById("btnform").innerHTML = "טוען...";
+        window.location.replace("list.php");
+       } catch (error) {
+        console.log(error);
     }
-
-    const savePost = async () => {
-   
-      const form = document.querySelector('#add_event_form');
-      try {
-          let response = await fetch('action.php', {
-              method: 'POST',
-              body: new FormData(form),
-          });
-          const result = await response.json();
-          console.log(result);
-         
-      } catch (error) {
-          console.log("error : "+error);
-      }
-  };
-
-
+};
+    
+  }

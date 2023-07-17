@@ -1,10 +1,12 @@
+
+
 <?php
 $dbhost = "148.66.138.145";
 $dbuser = "dbusrShnkr23";
 $dbpass = "studDBpwWeb2!";
 $dbname = "dbShnkr23stud2";
 $connection = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
-$connection->set_charset("utf8"); //hebrew support
+$connection->set_charset("utf8"); 
 
 
 if(mysqli_connect_errno()) {
