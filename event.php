@@ -14,14 +14,17 @@ session_start();
           $result_user = mysqli_query($connection , $query_user);
           $row_user    = mysqli_fetch_array($result_user);
           $event_id = $_GET['eventId'];
-         $query_officers  = "SELECT * from tbl_206_officers where event_id=".$event_id.";";
 
+         $query_officers  = "SELECT * from tbl_206_officers where event_id=".$event_id.";";
          $result_officers = mysqli_query($connection , $query_officers);
+
          $query_event = "select * from tbl_206_events e inner join tbl_206_officers o on e.offcer_owner = o.officer_id where e.event_id =".$event_id.";";
          $result_event = mysqli_query($connection , $query_event);
          $row_event    = mysqli_fetch_array($result_event);
+
          $team= "select*from tbl_206_officers o inner join tbl_206_events e where o.team=e.officer_qty and o.team='".$row_event["officer_qty"]."' and e.event_id='".$event_id."';";
           $team_result=mysqli_query($connection , $team);
+
           $comander= "select*from tbl_206_officers o inner join tbl_206_events e where o.team=e.officer_qty and o.team='".$row_event["officer_qty"]."' and e.event_id='".$event_id."' and role='comander';";
           $comander_result=mysqli_query($connection , $comander);
           $row_comander= mysqli_fetch_array( $comander_result);
@@ -188,19 +191,19 @@ session_start();
                     </li>
                     <li class="list-group-item">
                       <div class="form-check">
-                        <input class="form-check-input" id="reinforcement_yorashalayem" type="checkbox"
-                          name="interests[]" value="צוות ירושלים מרכז">
+                        <input class="form-check-input" name="interests[]" type="checkbox" value="הבולדוזרים"
+                          id="checkbox_boldor">
                         <label class="form-check-label" for="flexCheckDefault" id="reinforcements_team">
-                          צוות ירושלים מרכז
+                          צוות הבולדוזרים
                         </label>
                       </div>
                     </li>
                     <li class="list-group-item">
                       <div class="form-check">
-                        <input class="form-check-input" name="interests[]" type="checkbox" value="צוות אריה"
-                          id="checkbox_aria">
+                        <input class="form-check-input" id="reinforcement_yorashalayem" type="checkbox"
+                          name="interests[]" value="צוות ירושלים מרכז">
                         <label class="form-check-label" for="flexCheckDefault" id="reinforcements_team">
-                          צוות הבולדוזרים
+                          צוות ירושלים מרכז
                         </label>
                       </div>
                     </li>
@@ -223,7 +226,7 @@ session_start();
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="send_message_body">
-                  <form id="send_message_form">
+                  <form id="send_message_form" action="event.php">
                     <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">כותרת ההודעה</label><br>
                       <input type="text" class="form-control" required="true" id="title_messageAll"
