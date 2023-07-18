@@ -5,16 +5,22 @@ function changebackgrund(){
     document.getElementById("change-background").onclick = function () {
         if (flag==0) {
             
-            obj=document.getElementById("main");
-            obj.style.backgroundColor=" rgb(247, 226, 226)";
-            flag=1;
+          obj=document.querySelectorAll(".card");
+            for (let index = 0; index < obj.length; index++) {
+              
+              obj[index].style.border="solid red";
+              flag=1;
+              
+            }
             return;
         }
         if(flag==1){
-            obj=document.getElementById("main");
-            obj.style.backgroundColor="#dddddd";
+          obj=document.querySelectorAll(".card");
+          for (let index = 0; index < obj.length; index++) {
+            obj[index].style.border="solid #dddddd";
             flag=0;
-            return;
+          }
+          return;
         }
 
       };
@@ -94,3 +100,41 @@ function changebackgrund(){
 };
     
   }
+
+
+
+  function makeSelected (selectid) {
+    const selectObj = document.querySelector(selectid);
+    ind = selectObj.dataset.selected;
+    for (let index = 0; index < selectObj.options.length; index++) {
+      if(selectObj.options[index].innerHTML==ind){
+
+        selectObj.options[index].selected = true;
+      }
+      
+    }
+}
+  window.onload = function init() {
+    makeSelected();
+}
+
+
+
+function showData(data){
+  const ulFrag = document.createDocumentFragment();
+
+  for (const key in data.cities) {
+      const li = document.createElement('li');
+
+      sHtml = `<a class="dropdown-item" href='list.php?location="${data.cities[key]}"'>${data.cities[key]}</a>`;
+      li.innerHTML = sHtml;
+      
+
+      ulFrag.appendChild(li);
+  }
+
+  document.getElementById("city").appendChild(ulFrag);
+}
+fetch("data/city.json")
+  .then(response => response.json())
+  .then(data => showData(data));

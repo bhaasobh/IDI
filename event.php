@@ -8,16 +8,23 @@ session_start();
     if(!isset($_SESSION["user_id"])) {
         header('Location: ' . URL . 'index.php');
     } else {
+
+          $userID = $_SESSION["user_id"] ;
+          $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
+          $result_user = mysqli_query($connection , $query_user);
+          $row_user    = mysqli_fetch_array($result_user);
           $event_id = $_GET['eventId'];
          $query_officers  = "SELECT * from tbl_206_officers where event_id=".$event_id.";";
 
          $result_officers = mysqli_query($connection , $query_officers);
          $query_event = "select * from tbl_206_events e inner join tbl_206_officers o on e.offcer_owner = o.officer_id where e.event_id =".$event_id.";";
-        
          $result_event = mysqli_query($connection , $query_event);
          $row_event    = mysqli_fetch_array($result_event);
-        
-
+         $team= "select*from tbl_206_officers o inner join tbl_206_events e where o.team=e.officer_qty and o.team='".$row_event["officer_qty"]."' and e.event_id='".$event_id."';";
+          $team_result=mysqli_query($connection , $team);
+          $comander= "select*from tbl_206_officers o inner join tbl_206_events e where o.team=e.officer_qty and o.team='".$row_event["officer_qty"]."' and e.event_id='".$event_id."' and role='comander';";
+          $comander_result=mysqli_query($connection , $comander);
+          $row_comander= mysqli_fetch_array( $comander_result);
     }
     ?>
 
@@ -122,17 +129,17 @@ session_start();
         </a>
       </div>
       <div class="p-2">
-        <h6 id="profileName">שלום רש"ט דנית</h6>
+      <h6 id="profileName">שלום  <?php echo $row_user["rank"]. " ". $row_user["first_name"]." ". $row_user["last_name"] ?></h6>
       </div>
       <div class="p-2">
-        <img src="images/da.png" class="profilePic" alt="danit" title="danit">
+        <img src="<?php echo $row_user["photo_path"] ?>" class="profilePic" alt=<?php echo $row_user["first_name"] ?> title=<?php echo $row_user["first_name"] ?>>
       </div>
     </div>
   </header>
   <section id="wrapper">
     <section id="aside-and-main">
       <main>
-        <h2 class="eventTitle"> <?php echo $row_event["title"] ;?> </h2>
+        <h2 class="eventTitle"> <?php echo $row_event["title"] ." ". $row_event["location"]."";?> </h2>
         <section id="eventActions">
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reinforcementsModal">בקש
             תגבור</button>
@@ -188,6 +195,15 @@ session_start();
                         </label>
                       </div>
                     </li>
+                    <li class="list-group-item">
+                      <div class="form-check">
+                        <input class="form-check-input" name="interests[]" type="checkbox" value="צוות אריה"
+                          id="checkbox_aria">
+                        <label class="form-check-label" for="flexCheckDefault" id="reinforcements_team">
+                          צוות הבולדוזרים
+                        </label>
+                      </div>
+                    </li>
                   </ul>
                 </div>
                 <div class="modal-footer">
@@ -237,7 +253,7 @@ session_start();
                   echo '<thead>
                 <tr class="eventTitletable">
                  
-                  <th scope="col" colspan="2">הפגנה בהבימה</th>
+                  <th scope="col" colspan="2">'.$row_event["title"].'</th>
                 </tr>
               </thead>
               <tbody>
@@ -245,25 +261,13 @@ session_start();
                   <td>
                     <h6> קצין אחראי </h6>
                   </td>
-                  <td>'.$row_event["first_name"]." ".$row_event["last_name"].'</td>
+                  <td>'.$row_comander["first_name"].' '.$row_comander["last_name"].'</td>
                 </tr>
                 <tr>
                   <td>
-                    <h6> סה"כ שוטרים</h6>
+                    <h6> צוות הפעילות</h6>
                   </td>
                   <td>'.$row_event["officer_qty"].'</td>
-                </tr>
-                <tr>
-                  <td>
-                    <h6> פעילים</h6>
-                  </td>
-                  <td>6</td>
-                </tr>
-                <tr>
-                  <td>
-                    <h6>לא פעילים </h6>
-                  </td>
-                  <td>0</td>
                 </tr>
                 <tr>
                   <td>
@@ -287,7 +291,7 @@ session_start();
               </section>
               <section id="copsEvent">
                 <?php
-                 while($row_officers = mysqli_fetch_assoc($result_officers)){
+                 while($row_officers = mysqli_fetch_assoc($team_result)){
                    echo '<div class="card copCard">
                   <div class="card-body copBody">
                   <h6 class="copName" >' . $row_officers["first_name"] ." ". $row_officers["last_name"]  . '</h6>
@@ -305,24 +309,28 @@ session_start();
                 ?>
             </section>
         </div>
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        <?php
+          if($row_user["premmisions"]==1){
+          echo
+          '<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
           id="btn_deleteEvent">סיים אירוע</button>
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">סיום פעילות</h1>
-                <button type="botton" class="btn-close" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                בטוח/ה שברצונך לסיים את הפעילות
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">לא</button>
-                  <a href="list.php">
-                    <button type="submit" class="btn btn-primary">כן</button>
-                  </a>
+                     <h1 class="modal-title fs-5" id="exampleModalLabel">סיום פעילות</h1>
+                      <button type="botton" class="btn-close" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      בטוח/ה שברצונך לסיים את הפעילות
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">לא</button>
+                        <a href="delete.php?event_id='.$event_id.'">
+                          <button type="submit" class="btn btn-primary">כן</button>
+                        </a>';};
+                  ?>
                 </main>
                 <aside id="navigation">
                   <ul class="nav-flex-column">

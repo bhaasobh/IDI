@@ -9,17 +9,29 @@ session_start();
         
         header('Location: ' . URL . 'index.php');
     } else {
-      
-        $userID = $_SESSION["user_id"] ;
-
-        echo $userID;
-        $query_events  = "SELECT * FROM tbl_206_events order by date,time_start";
-        $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
-      if('num')
-        $result_events = mysqli_query($connection , $query_events);
+      $userID = $_SESSION["user_id"] ; 
+      $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
+        if(isset($_GET["location"])){
+              $city=$_GET["location"];
+              if($city==='"הכל"'){
+              $query_events  = "SELECT * FROM tbl_206_events order by date,time_start";
+              $result_events = mysqli_query($connection , $query_events);
+              $result_user = mysqli_query($connection , $query_user);
+              $row_user    = mysqli_fetch_array($result_user);
      
-        $result_user = mysqli_query($connection , $query_user);
-        $row_user    = mysqli_fetch_array($result_user);
+            }else{
+              $query_events 	= "SELECT * FROM tbl_206_events WHERE location=".$city;
+              $result_events = mysqli_query($connection , $query_events);
+              $result_user = mysqli_query($connection , $query_user);
+              $row_user    = mysqli_fetch_array($result_user);
+            }
+        }else{
+            $query_events  = "SELECT * FROM tbl_206_events order by date,time_start";
+            $result_events = mysqli_query($connection , $query_events);
+            $result_user = mysqli_query($connection , $query_user);
+            $row_user    = mysqli_fetch_array($result_user);
+          }
+          
     }
     ?>
 <!DOCTYPE html>
@@ -47,7 +59,6 @@ session_start();
   <script src="java/scripts.js"></script>
   <title>Immediate Danger Indicator</title>
 </head>
-
 <body>
   <header>
     <div class="d-flex mb-3">
@@ -125,7 +136,7 @@ session_start();
         <h6 id="profileName">שלום  <?php echo $row_user["rank"]. " ". $row_user["first_name"]." ". $row_user["last_name"] ?></h6>
       </div>
       <div class="p-2">
-        <img src="<?php echo $row_user["photo_path"] ?>" class="profilePic" alt="danit" title="danit">
+        <img src="<?php echo $row_user["photo_path"] ?>" class="profilePic" alt=<?php echo $row_user["first_name"] ?> title=<?php echo $row_user["first_name"] ?>>
       </div>
     </div>
   </header>
@@ -135,7 +146,7 @@ session_start();
         <h2>ראשי</h2>
         <div id="btn">
           <div class="btn1" id="btn_auto">
-            <button type="button" class="btn btn-outline-danger" id="change-background">מצב עומס</button>
+            <button type="submit" class="btn btn-outline-danger" id="change-background">מצב עומס</button>
           </div>
           <div class="btn1">
             <div class="dropdown">
@@ -156,9 +167,8 @@ session_start();
                 data-bs-toggle="dropdown" aria-expanded="false">
                 סינון
               </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">לפי מיקום</a></li>
-                <li><a class="dropdown-item" href="#">לפי תאריך</a></li>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="city">
+                
               </ul>
             </div>
           </div>
@@ -174,7 +184,7 @@ session_start();
               echo             '<div class="row">';
               echo                '<div class="col-9">';
               echo                '<h4 class="card-title">'.$row_events["title"].' '.$row_events["location"].'</h4>';
-              echo                '<h5 class="card-subtitle mb-2 text-muted">שוטרים פעילים:'.$row_events["officer_qty"].'</h5>';
+              echo                '<h5 class="card-subtitle mb-2 text-muted">צוות הפעילות:'.$row_events["officer_qty"].'</h5>';
               echo                 '<h5 class="card-subtitle mb-2 text-muted">רמת סיכון:'.$row_events["risk_level"].'</h5>';
               echo                  '</div>';
               echo                   '<div class="col-3">';
@@ -183,17 +193,18 @@ session_start();
                                          '<br>'
                                        .$row_events["time_start"].
                                         '</p>';
-             echo            '</a>' ;
               echo                      '<div class="icons">';
-              echo                          '<a href="delete.php?event_id=' . $row_events["event_id"].'">'.
-                                              '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                        if($row_user["premmisions"]==1){
+              echo                        '<a href="delete.php?event_id=' . $row_events["event_id"].'">'.
+                                        '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                             class="bi bi-trash" viewBox="0 0 16 16">
                                             <path
                                             d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
                                             <path
                                             d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
                                           </svg>
-                                          </a>';
+                                          </a>';}
+
                echo                           '<a href="form.php?event_id=' . $row_events["event_id"].'">'.
                                               '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                               class="bi bi-pencil" viewBox="0 0 16 16">
@@ -212,17 +223,18 @@ session_start();
             echo                   '</div>'  ;
             echo                 '</div>' ;
             echo               '</div>' ;
-           
+            echo            '</a>' ;
             echo          '</li>' ;
-            echo '<input type="hidden" id="Id" name="Id" value="' . $row_events["event_id"].'">';
 
             }
             ?>   
         </ul>
         </div>
-        <a type="button" class="btn btn-secondary" id="add-event" href="form.php">
+        <?php
+        if($row_user["premmisions"]==1){
+        echo '<a type="button" class="btn btn-secondary" id="add-event" href="form.php">
           <section id="add-text">+</section>
-        </a>
+        </a>';}?>
       </main>
       <aside id="navigation">
         <ul class="nav-flex-column">
