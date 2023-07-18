@@ -68,7 +68,9 @@ function changebackgrund(){
       $("#checkbox_checkAll").click(function() {
       $("#checkbox_hashalom").attr('disabled', !$("#checkbox_hashalom").attr('disabled'));
       $("#checkbox_aria").attr('disabled', !$("#checkbox_aria").attr('disabled'));
+      $("#checkbox_boldor").attr('disabled', !$("#checkbox_boldor").attr('disabled'));
       $("#reinforcement_yorashalayem").attr('disabled', !$("#reinforcement_yorashalayem").attr('disabled'));
+      
         });
       
       
