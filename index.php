@@ -13,9 +13,9 @@ if(!empty($_POST["loginMail"])) {
     $row    = mysqli_fetch_array($result);
     $message = "debug !";
     if(is_array($row)) {
-        session_start();
         $_SESSION["user_id"] = $row['id'];
-        header('Location: ' . URL . 'list.php');
+        $_SESSION["officer_id"] = $row['officer_id'];
+         header('Location: ' . URL . 'list.php');
     } else {
         $message = "Invalid username or password !";
     }

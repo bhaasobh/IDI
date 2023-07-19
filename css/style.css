@@ -10,6 +10,7 @@ header, main, footer, nav, aside, section, div  {
 a{
     display: contents;
     text-decoration: none;
+    color: #000000;
 }
 #wrapper
 {
@@ -30,6 +31,7 @@ background:rgb(255, 255, 255);
 #logo
 {
     position: absolute;
+    display: block;
     margin-bottom: 120px;
     background-image: url("../images/IDI.png");
     width: 250px;
@@ -148,6 +150,7 @@ main
     width: 70rem;
     height: 9rem;
     background-color:rgb(248, 248, 248);
+    text-decoration: none;
 }
 .card:hover{
     background-color: rgb(235, 233, 233);
@@ -167,7 +170,9 @@ main
     font-size: 25px;
 }
 
-
+#list>a{
+    text-decoration: none;
+}
 
 .icons{
     display: flex;
@@ -558,6 +563,19 @@ td{
 #log{
     display:grid;
 }
+
+#success{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    
+}
+
+
+
 @media(max-width:984px){
 
 

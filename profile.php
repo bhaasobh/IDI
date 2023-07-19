@@ -1,4 +1,3 @@
-
 <?php
     include 'db.php';
     include 'config.php';
@@ -13,19 +12,8 @@
     $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
     $result_user = mysqli_query($connection , $query_user);
     $row_user    = mysqli_fetch_array($result_user);
-    $event_id = null;
-    if (!empty($_GET["event_id"])) { 
-      
-      $_SESSION["event_id"] = $_GET["event_id"];
-        $event_id = $_GET["event_id"];
-        $query  = "SELECT * FROM tbl_206_events e join tbl_206_officers o on e.offcer_owner = o.officer_id  WHERE e.event_id=".$event_id.";";
-        $result = mysqli_query($connection , $query);
-
-        if($result) { 
-            $row    = mysqli_fetch_assoc($result); 
-            
-        }
-    }
+    
+    
 
 ?>
 
@@ -140,92 +128,32 @@
   <section id="wrapper">
     <section id="aside-and-main">
       <main id="main">
-      <?php if (isset($_GET["event_id"])){ echo "<h2>עריכה</h2>";}else{echo "<h2>הוספת אירוע חדש</h2>";}?>
-                <form  id="add_form" method="POST" action=""  class="form-check">
+          <h2>עריכת פרופיל</h2>
+            <form id="add_pro" method="POST" class="form-check">
                 <br><br><br>
                 <div class="row d-lg-column-reverse">
-                <div class="col-lg-6">
+                <div class="col-12" >
                     <div class="input-group input-group-lg">
-                    <div class="input-group mb-3 input-group-lg">
-                    <select class="form-select" name="loc" id="loc" style="direction: rtl;" <?php if (isset($_GET["event_id"])){ echo 'data-selected="'. $row["location"].'"';}?>>
-                      <option value="שפרעם">שפרעם</option>
-                      <option value="עפולה">עפולה</option>
-                      <option value="רמת גן">רמת גן</option>
-                      <option value="תל אביב">תל אביב</option>
-                      <option value="ירושלים">ירושלים</option>
-                      <option value="אילת">אילת</option>
-                      <option value="נתניה">נתניה</option>
-                      <option value="קריית שמונה">קריית שמונה</option>
-                      <option value="עכו">עכו</option>
-                      <option value="נהריה">נהריה</option>
-                      <option value="כפר סבא">כפר סבא</option>
-                      <option value="חיפה">חיפה</option>
-                      <option value="בית שאן">בית שאן</option>
-                      <option value="רעננה">רעננה</option>
-                      <option value="ראשון לציון">ראשון לציון</option>
-                    </select>
-                    <label class="input-group-text" for="loc">מיקום</label>
-                  </div>
-                    </div><br>
-                    <div class="input-group input-group-lg">
-                        <input type="date" name="date" id="date"  class="form-control" placeholder="תאריך" required  <?php if (isset($_GET["event_id"])){ echo 'value="'. $row["date"].'"';}?>>
-                        <span class="input-group-text">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
-                                <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
-                                <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                              </svg>
-                        </span>
-                    </div><br><br>
-                    <div class="input-group input-group-lg">
-                        <input type="text"  name="hour" class="form-control" placeholder="שעה" <?php if (isset($_GET["event_id"])){ echo 'value="'. $row["time_start"].'"';}?>>
-                        <span class="input-group-text">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-                              </svg>
-                        </span>
-                    </div>
-                    <br><br>
-                </div>
-                <div class="col-lg-6" >
-                    <div class="input-group input-group-lg">
-                    <input type="text" name="actname" id="actname" class="form-control"   placeholder=" שם פעילות" required <?php if (isset($_GET["event_id"])){ echo 'value="'. $row["title"].'"';}?>>
-                    <span class="input-group-text">שם פעילות</span>
+                    <input type="text" name="proemail" id="proemail" class="form-control"   placeholder="אימייל" required <?php if (isset($_GET["id"])){ echo 'value="'. $row_user["email"].'"';}?>>
+                    <span class="input-group-text">אימייל</span>
                 </div><br><br>
                 <div class="input-group input-group-lg">
-                    <input type="text" name="acttype" id="acttype" class="form-control" placeholder="סוג פעילות" <?php if (isset($_GET["event_id"])){ echo 'value="'. $row["event_type"].'"';}?>>
-                    <span class="input-group-text"> סוג פעילות</span>
+                    <input type="text" name="password" id="password" class="form-control" placeholder="סיסמה" <?php if (isset($_GET["id"])){ echo 'value="'. $row_user["password"].'"';}?>>
+                    <span class="input-group-text">סיסמה</span>
                 </div><br><br>
-                <div class="input-group mb-3 input-group-lg">
-                    <select class="form-select" name="force_Qty" id="force_Qty" style="direction: rtl;" <?php if (isset($_GET["event_id"])){ echo 'data-selected="'. $row["officer_qty"].'"';}?>>
-                      <option value="אריה">אריה</option>
-                      <option value="השלום">השלום</option>
-                      <option value="ירושלים מרכז">ירושלים מרכז</option>
-                      <option value="הבולדוזרים">הבולדוזרים</option>
-                    </select>
-                    <label class="input-group-text" for="force_Qty">בחירת צוות</label>
-                  </div>
-                <br>
-                <div class="input-group mb-3 input-group-lg">
-                    <select class="form-select" name="risk" id="risk" style="direction: rtl;"  <?php if (isset($_GET["event_id"])){ echo 'data-selected="'. $row["risk_level"].'"';}?>>
-                      <option value="נמוכה">נמוכה</option>
-                      <option value="בינונית">בינונית</option>
-                      <option value="גבוהה">גבוהה</option>
-                    </select>
-                    <label class="input-group-text" for="risk">רמת סיכון</label>
-                  </div>
-                <br>
-            </div>
-            <div class="input-group input-group-lg">
-                <textarea name="description" id="description" cols="50" class="form-control" <?php if (isset($_GET["event_id"])){ echo 'value="'. $row["description"].'"';}?>></textarea> 
-                <span class="input-group-text">סיכום אירוע</span>
-            </div><br><br>
-            <input type="hidden" id="event_id" name="event_id" <?php if (isset($_GET["event_id"])){ echo 'value='. $row["event_id"];}?>>
+                <div class="input-group input-group-lg">
+                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder="שם פרטי"<?php if (isset($_GET["id"])){ echo 'value="'. $row_user["first_name"].'"';}?>>
+                    <span class="input-group-text">שם פרטי</span>
+                </div><br><br>
+                <div class="input-group input-group-lg">
+                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder="שם משפחה"<?php if (isset($_GET["id"])){ echo 'value="'. $row_user["last_name"].'"';}?>>
+                    <span class="input-group-text">שם משפחה</span>
+                </div><br><br>
+            <input type="hidden" id="id" name="id" <?php if (isset($_GET["id"])){ echo 'value='. $row_user["id"];}?>>
             <button id="btnform" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 אישור
               </button>
-                    </div>
-                    <div id="msg"></div>
+            </div>
             </form>
       </main>
       <aside id="navigation">
@@ -288,10 +216,7 @@
       </aside>
     </section>
   </section>
-  <script>makeSelected ("#loc")</script>
-  <script>makeSelected ("#force_Qty")</script>
-  <script>makeSelected ("#risk")</script>
-  <script>sub()</script>
+  <script>sub2()</script>
 </body>
 </html>
 
