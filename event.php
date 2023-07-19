@@ -226,7 +226,8 @@ session_start();
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="send_message_body">
-                  <form id="send_message_form" action="event.php">
+                  <form id="send_message_form" action="event.php"  method="get">
+                  <input type="hidden" name="eventId" value="<?php  echo $event_id ?>" />
                     <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">כותרת ההודעה</label><br>
                       <input type="text" class="form-control" required="true" id="title_messageAll"

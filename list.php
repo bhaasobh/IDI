@@ -178,7 +178,8 @@ session_start();
           <?php
             while($row_events = mysqli_fetch_assoc($result_events)){
               echo    '<li>';
-              echo    	'<a href="event.php?eventId=' . $row_events["event_id"] . '"</a>';
+              echo    	'<a href="event.php?eventId=' . $row_events["event_id"] . '" </a>';
+echo  $row_events["event_id"];
               echo        '<div class="card">';
               echo          '<div class="card-body">';
               echo             '<div class="row">';
