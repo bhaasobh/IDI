@@ -1,15 +1,13 @@
 <?php
     include 'db.php';
     include 'config.php';
-
     session_start();
-
     if(!isset($_SESSION["user_id"])) {
         header('Location: ' . URL . 'index.php');
     }
     $userID = $_SESSION["user_id"] ;
     $officer_id = $_SESSION["officer_id"] ; 
-    $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
+    $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where officer_id=" . $officer_id;
     $result_user = mysqli_query($connection , $query_user);
     $row_user    = mysqli_fetch_array($result_user);
     if(isset($_POST["btnemp"])){
@@ -22,15 +20,9 @@
       $query4 = 'UPDATE tbl_206_officers SET first_name = "'.$first_name.'" ,last_name = "'.$last_name.'" WHERE officer_id = "'.$_SESSION["officer_id"].'";';
       $result3 = mysqli_query($connection, $query3);
       $result4 = mysqli_query($connection, $query4);
-  
-      
       header('Location: ' . URL . 'list.php');
     }
-
-
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +54,6 @@
       <section>
         <button id="hamburger" class="bi bi-list navbar-toggler d-lg-none d-inline" type="button"
           data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"></button>
-
         <div class="offcanvas d-flex align-items-center flex-diraction offcanvas-bottom" tabindex="-1"
           id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
@@ -151,7 +142,7 @@
                     <span class="input-group-text">אימייל</span>
                 </div><br><br>
                 <div class="input-group input-group-lg">
-                    <input type="password" name="password" id="password" class="form-control" placeholder="סיסמה" <?php if (isset($_GET["id"])){ echo 'value="'. $row_user["password"].'"';}?>>
+                    <input type="text" name="password" id="password" class="form-control" placeholder="סיסמה" <?php if (isset($_GET["id"])){ echo 'value="'. $row_user["password"].'"';}?>>
                     <span class="input-group-text">סיסמה</span>
                 </div><br><br>
                 <div class="input-group input-group-lg">
@@ -231,8 +222,6 @@
   </section>
 </body>
 </html>
-
-
 <?php
 mysqli_close($connection);
 ?>

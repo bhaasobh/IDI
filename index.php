@@ -17,6 +17,9 @@ if(!empty($_POST["loginMail"])) {
         if(is_array($row)) {
             $_SESSION["user_id"] = $row['id'];
             $_SESSION["officer_id"] = $row['officer_id'];
+
+            echo $row['id'] ;
+            echo $row['officer_id'];
             header('Location: ' . URL . 'list.php');
         } else {
             $message = "Invalid username or password !";

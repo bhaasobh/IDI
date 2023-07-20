@@ -13,14 +13,33 @@
     $first_name= mysqli_real_escape_string($connection, $_GET['first_name']);
     $last_name= mysqli_real_escape_string($connection, $_GET['last_name']);
     $prem= mysqli_real_escape_string($connection, $_GET['prem']);
-    $query1 = "INSERT INTO tbl_206_users(email,password,premmisions) VALUES
-    ('$email','$pass','$prem')";
-    echo $query1;
-    $query2 = "INSERT INTO tbl_206_officers(first_name,last_name) VALUES
-    ('$first_name','$last_name')";
-     echo $query2;
-     $result1 = mysqli_query($connection, $query1);
-      $result2 = mysqli_query($connection, $query2);
+    if($prem==1)
+    {
+      $eid = 9999;
+      $forc = "operation team";
+    }else
+    {
+      $eid = 1;
+      $query_event_id = "SELECT * FROM tbl_206_events where event_id=".$eid;
+      $result_event_id = mysqli_query($connection , $query_event_id);
+      $row_event_id = mysqli_fetch_array($result_event_id);
+      $forc = $row_event_id['officer_qty'];
+    }
+    $query = "INSERT INTO tbl_206_officers(first_name,last_name,team,event_id) VALUES('$first_name','$last_name','$forc','$eid')";
+    $result = mysqli_query($connection, $query);
+
+    $query1 = 'select * from tbl_206_officers where first_name="'. $first_name .'" and last_name ="'.$last_name.'";';
+    $result1 = mysqli_query($connection, $query1);
+    $row_officer_id = mysqli_fetch_array($result1);
+    $id=$row_officer_id["officer_id"];
+    
+    $query2 = "INSERT INTO tbl_206_users(email,password,officer_id,premmisions) VALUES ('$email','$pass','$id','$prem')";
+    $result2 = mysqli_query($connection, $query2);
+    //echo $query1;
+    //$query2 = "INSERT INTO tbl_206_officers(first_name,last_name) VALUES ('$first_name','$last_name')";
+     //echo $query2;
+     
+      //$result2 = mysqli_query($connection, $query2);
     header('Location: ' . URL . 'index.php');
     }
 

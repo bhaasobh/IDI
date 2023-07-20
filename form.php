@@ -10,7 +10,7 @@
     }
     $userID = $_SESSION["user_id"] ;
     $officer_id = $_SESSION["officer_id"] ; 
-    $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
+    $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where officer_id=" . $officer_id;
     $result_user = mysqli_query($connection , $query_user);
     $row_user    = mysqli_fetch_array($result_user);
     $event_id = null;
