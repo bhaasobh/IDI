@@ -8,19 +8,21 @@ if(!empty($_POST["loginMail"])) {
         . "' and password = '"
         . $_POST["loginPass"]
         ."'";
-        
         $result = mysqli_query($connection , $query);
         $row    = mysqli_fetch_array($result);
         $message = "debug !";
         if(is_array($row)) {
             $_SESSION["user_id"] = $row['id'];
             $_SESSION["officer_id"] = $row['officer_id'];
+            echo $row['id'] ;
+            echo $row['officer_id'];
             header('Location: ' . URL . 'list.php');
         } else {
             $message = "Invalid username or password !";
         }
-}
-?>
+
+    }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +41,7 @@ if(!empty($_POST["loginMail"])) {
     <div id = "login-card">   
         <div class="container">
             <h1 id ="title">כניסה</h1>
-            <form action="" method="post" id="frmlog">
+            <form action="index.php" method="post" id="frmlog">
                 <section id="log">
                     <div class="mb-3 input">
                         <label for="exampleInputEmail1" class="form-label" ></label>
@@ -49,10 +51,12 @@ if(!empty($_POST["loginMail"])) {
                         <label for="exampleInputPassword1" class="form-label" ></label>
                          <input type="password" name = "loginPass" class="form-control" id="exampleInputPassword1" placeholder="סיסמה">
                     </div>
+                    <button type="button" class="btn btn-primary" id="logbtn"><a href="signup.php" style="color:white;">הירשם</a></button>
+                    <br>
                     <button type="submit" class="btn btn-primary" id="logbtn">התחבר</button>
+                    <div class="error-message">
+                        <?php if(isset($message)) { echo $message; } ;  ?></div>   
                 </section>
-                <div class="error-message">
-                    <?php if(isset($message)) { echo $message; } ;  ?></div>   
             </form>
         </div>
     </div>

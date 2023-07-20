@@ -11,7 +11,7 @@ session_start();
 
           $userID = $_SESSION["user_id"] ;
           $officer_id = $_SESSION["officer_id"] ; 
-          $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
+          $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where officer_id=" . $officer_id;
           $result_user = mysqli_query($connection , $query_user);
           $row_user    = mysqli_fetch_array($result_user);
           $event_id = $_GET['eventId'];
@@ -326,21 +326,20 @@ session_start();
                                     </svg>
                             </div>
                         </div>';
-                        while($row_officers = mysqli_fetch_assoc($team_result))
-                        {
-                          echo '<div class="card copCard">
-                                  <div class="card-body copBody">
-                                        <h6 class="copName" >' . $row_officers["first_name"] ." ". $row_officers["last_name"]  . '</h6>
-                                              <img src="'. $row_officers["photo_path"] . '" class="copPhoto">
-                                              <div class="copStatusColor"></div>
-                                              <label class="copStatus">מחובר</label>
-                                                <svg id="cameraIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                                class="bi bi-camera-video-fill" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd"
-                                                d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z" />
-                                                </svg>
-                                       </div>
-                                </div>';
+                        while($row_officers = mysqli_fetch_assoc($team_result)){
+                              echo '<div class="card copCard">
+                                        <div class="card-body copBody">
+                                            <h6 class="copName" >' . $row_officers["first_name"] ." ". $row_officers["last_name"]  . '</h6>
+                                                  <img src="'. $row_officers["photo_path"] . '" class="copPhoto">
+                                                      <div class="copStatusColor"></div>
+                                                    <label class="copStatus">מחובר</label>
+                                                    <svg id="cameraIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                    class="bi bi-camera-video-fill" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                    d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z" />
+                                                  </svg>
+                                          </div>
+                                    </div>';
                         }
                         ?>
             </section>
@@ -367,6 +366,10 @@ session_start();
                           <button type="submit" class="btn btn-primary">כן</button>
                         </a>';};
                   ?>
+
+
+
+
                 </main>
                 <aside id="navigation">
                   <ul class="nav-flex-column">
@@ -436,6 +439,7 @@ session_start();
   </section>
 </body>
 </html>
+
 <?php
 mysqli_close($connection);
 ?>

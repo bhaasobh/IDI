@@ -1,19 +1,27 @@
 <?php	
     include "config.php";
     include "db.php";
+
     session_start();
+
     if(!isset($_SESSION["user_id"])) {
         header('Location: ' . URL . 'index.php');
     }
     $userID = $_SESSION["user_id"] ;
     $officer_id = $_SESSION["officer_id"] ; 
-    $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
+    $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where officer_id=" . $officer_id;
     $result_user = mysqli_query($connection , $query_user);
     $row_user    = mysqli_fetch_array($result_user);
+
     $event_id = $_GET["event_id"];
+
     $query="DELETE FROM tbl_206_events where event_id =".$event_id;
+
     $result = mysqli_query($connection, $query);
+
+    
     ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,6 +52,7 @@
       <section>
         <button id="hamburger" class="bi bi-list navbar-toggler d-lg-none d-inline" type="button"
           data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"></button>
+
         <div class="offcanvas d-flex align-items-center flex-diraction offcanvas-bottom" tabindex="-1"
           id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
@@ -192,7 +201,10 @@
   </section>
 </body>
 </html>
+
+
 <?php
+	
 mysqli_close($connection);
 ?>
 
