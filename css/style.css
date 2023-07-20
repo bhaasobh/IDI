@@ -8,7 +8,9 @@ header, main, footer, nav, aside, section, div  {
 
 }
 a{
+    display: contents;
     text-decoration: none;
+    color: #000000;
 }
 #wrapper
 {
@@ -29,7 +31,13 @@ background:rgb(255, 255, 255);
 #logo
 {
     position: absolute;
+    display: block;
     margin-bottom: 120px;
+    background-image: url("../images/IDI.png");
+    width: 250px;
+    height: 250px;
+    background-repeat: no-repeat;
+
 }
 
 
@@ -44,12 +52,14 @@ background:rgb(255, 255, 255);
 #profileName
 {
     position: absolute;
+
     display: flex;
     margin-top: 80px;
     color: #000000;
     font-size: 30px;
     font-family: 'Roboto', sans-serif;
     right: 70px;
+  
    
 }
 
@@ -94,7 +104,7 @@ aside
     position: relative;
 }
 
-#exit{
+.exit{
     display: flex;
     margin-top:85%;
     align-self: flex-end;
@@ -135,10 +145,12 @@ main
 
 
 .card{
+    display: flex;
     margin-top: 80px;
     width: 70rem;
     height: 9rem;
     background-color:rgb(248, 248, 248);
+    text-decoration: none;
 }
 .card:hover{
     background-color: rgb(235, 233, 233);
@@ -158,25 +170,26 @@ main
     font-size: 25px;
 }
 
+#list>a{
+    text-decoration: none;
+}
 
-
-#icons{
+.icons{
     display: flex;
     flex-direction: row;
     direction: ltr;
-    bottom: 0px;
 }
-.icon{
-    margin-right: 13px;
-    border: 0px;
-    text-decoration: none;
-    color: black;
-}
+
+
+
 
 .bi-trash:hover{
     color:firebrick;
 }
-
+.bi-pencil{
+    height: 30px;
+    width: 30px;
+}
 .bi-pencil:hover{
     color:rgb(5, 202, 5);
 }
@@ -243,9 +256,9 @@ h2{
 
 .date-and-time{
     direction: ltr;
-    display: flex;
     justify-self: start;
     font-size: 25px;
+    text-decoration: none;
 }
 
 #add-event{
@@ -379,9 +392,7 @@ span
 #copsEvent
 {
     display: flex;
-  
-    
-    align-self: flex-end;
+    align-self: flex-start;
     flex-direction: column;
       row-gap: 10px;
 }
@@ -451,7 +462,7 @@ border-radius: 100%;
     margin-right:10%;
 }
 
-#copCard
+.copCard
 {
     display: flex;
     margin:0px 10px 0px 0px;
@@ -480,7 +491,7 @@ border-radius: 100%;
     width: 400px;
 
 }
-#copBody
+.copBody
 {
     display: flex;
 }
@@ -515,19 +526,70 @@ td{
     height: 10px;
 
 }
+#login{
+    display: grid;
+}
+#login-card{
+    position: relative;
+    display: grid;
+    background-color: #e1dfdf;
+    width: 300px;
+    height: 300px;
+    justify-self: center;
+    align-self: center;
+    border-radius: 10px;
+    top: 120px;
+    direction: ltr;
+}
+.container{
+    display: grid;
+    justify-items: center;
+}
+#title{
+    position: absolute;
+}
 
+#login{
+    background-color: #000000;
+     background-image: url("../images/IDI.png");
+     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position-x:center;
+}
+
+#logbtn{
+    justify-self: center;
+}
+#log{
+    display:grid;
+}
+
+#success{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    
+}
 
 
 
 @media(max-width:984px){
 
- 
 
+    .profilePic
+    {
+        height: 50px;
+    }
     header{
         
         background:rgb(0, 0, 0);
     }
-
+    .btn1{
+        margin-left: 40px;
+    }
     #form{
         height: 844px;
     }
@@ -535,6 +597,9 @@ td{
     {
    
     color: #ffffff;
+    margin-top: 80px;
+    right: 10px;
+    font-size:10px;
     
     }
 
@@ -545,9 +610,18 @@ td{
 
 
     .card{
-        width: 40rem;
+        width: 20rem;
     }
-
+   
+    .card-title{
+        font-size: 20px;
+    }
+    .text-muted{
+        font-size: 15px;
+    }
+    .date-and-time{
+        font-size: 15px;
+    }
     aside{
       display: none;  
 
@@ -574,13 +648,11 @@ td{
 
     .nav-item{
         margin-top: 20px;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         font-size:30px;
         width:330px;
-        border-radius: 10px;
     }
 
-    #exit{
+    .exit{
         display: flex;
         margin-top:0px;
         align-self: flex-end;
@@ -604,20 +676,20 @@ td{
     #eventDetails{
         display: none;
     }
-    #copCard
+    .copCard
     {
         display: flex;
         margin:0px 10px 0px 0px;
         height: 80px;
        align-self: end;
-        width: 620px;
+        width: 320px;
     
     }
     .copPhoto
     {
     width: 40px;
     height: 40px;
-    margin: 0px 0px 0px 547px;
+    margin: 0px 0px 0px 247px;
 
     border-radius: 100%;
     }
@@ -627,7 +699,7 @@ td{
     display: flex;
     position: absolute;
     width: 100px;
-    margin: 10px 0px 0px 440px;
+    margin: 10px 0px 0px 140px;
    
     direction: rtl;
 }
@@ -635,13 +707,13 @@ td{
 .copStatus
 {
     position: absolute;
-    margin: 25px 0px 0px 480px;
+    margin: 25px 0px 0px 180px;
 }
 
 
 .copStatusColor
 {
-    margin: 34px 0px 0px 530px;
+    margin: 34px 0px 0px 230px;
 
 }
 
