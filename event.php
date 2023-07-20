@@ -439,3 +439,7 @@ session_start();
   </section>
 </body>
 </html>
+
+<?php
+mysqli_close($connection);
+?>

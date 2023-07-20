@@ -2,6 +2,15 @@
 include "config.php";
 include "db.php";
 session_start();
+
+if(isset($_POST["singup"])){
+    $_SESSION["user_id"]=null;
+    header('Location: ' . URL . 'profile.php');
+}
+    
+
+
+
 if(!empty($_POST["loginMail"])) {
     $query  = "SELECT * FROM tbl_206_users WHERE email='" 
         . $_POST["loginMail"] 
@@ -20,7 +29,9 @@ if(!empty($_POST["loginMail"])) {
             $message = "Invalid username or password !";
         }
 
-}
+        
+    }
+  
 
 ?>
 
@@ -52,10 +63,12 @@ if(!empty($_POST["loginMail"])) {
                         <label for="exampleInputPassword1" class="form-label" ></label>
                          <input type="password" name = "loginPass" class="form-control" id="exampleInputPassword1" placeholder="סיסמה">
                     </div>
+                    <button type="submit" name="singup" class="btn btn-primary" id="singup">הירשם</button>
+                    <br>
                     <button type="submit" class="btn btn-primary" id="logbtn">התחבר</button>
+                    <div class="error-message">
+                        <?php if(isset($message)) { echo $message; } ;  ?></div>   
                 </section>
-                <div class="error-message">
-                    <?php if(isset($message)) { echo $message; } ;  ?></div>   
             </form>
         </div>
     </div>

@@ -16,15 +16,24 @@
     $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
     $result_user = mysqli_query($connection , $query_user);
     $row_user    = mysqli_fetch_array($result_user);
+    $query_events  = "SELECT * FROM tbl_206_events ";
+    $result_events = mysqli_query($connection , $query_events);
+
 
     if(isset($_GET["btnofficer"])){
       
         $first_name = mysqli_real_escape_string($connection, $_GET['first_name']);
         $last_name = mysqli_real_escape_string($connection, $_GET['last_name']);
         $city= mysqli_real_escape_string($connection, $_GET['city']);
-        $forc= mysqli_real_escape_string($connection, $_GET['force_Qty']);
+       
         $eid= mysqli_real_escape_string($connection, $_GET['eventid']);
-        
+
+        $query_event_id = "SELECT * FROM tbl_206_events where event_id=".$eid;
+        $result_event_id = mysqli_query($connection , $query_event_id);
+        $row_event_id = mysqli_fetch_array($result_event_id);
+        $forc = $row_event_id['officer_qty'];
+        echo $query_event_id;
+
 
         $query = "INSERT INTO tbl_206_officers(first_name,last_name,team,address,event_id) VALUES
 			('$first_name','$last_name','$forc','$city','$eid')";
@@ -172,19 +181,18 @@
                     <input type="text" name="city" id="proemail" class="form-control"   placeholder="עיר">
                     <span class="input-group-text">עיר</span>
                 </div><br><br>
-                <div class="input-group input-group-lg">
-                    <input type="num" name="eventid"  class="form-control"   placeholder="מספר אירוע">
-                    <span class="input-group-text">מספר אירוע</span>
-                    </div><br>
-                <div class="input-group mb-3 input-group-lg">
-                    <select class="form-select" name="force_Qty" id="force_Qty" style="direction: rtl;" required>
-                      <option value="אריה">אריה</option>
-                      <option value="השלום">השלום</option>
-                      <option value="ירושלים מרכז">ירושלים מרכז</option>
-                      <option value="הבולדוזרים">הבולדוזרים</option>
-                    </select>
-                    <label class="input-group-text" for="force_Qty">בחירת צוות</label>
+                    <div class="input-group mb-3 input-group-lg">
+                    <select class="form-select"  name="eventid"  id="eventid" style="direction: rtl;" required>
+
+                    <?php
+                    while($row_events = mysqli_fetch_assoc($result_events)){
+                      echo '<option value="'.$row_events["event_id"].'">'.$row_events["title"].' '.$row_events["location"].'</option>';
+                    };
+                      ?>
+                    </select><br>
+                    <label class="input-group-text" for="eventid">שייך לאירוע</label>
                   </div>
+              
             <button id="btnofficer" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" name="btnofficer">
                 אישור
               </button>
