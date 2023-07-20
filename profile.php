@@ -4,38 +4,29 @@
 
     session_start();
 
-    $email = mysqli_real_escape_string($connection, $_POST["proemail"]);
-    $pass = mysqli_real_escape_string($connection, $_POST['password']);
-    $first_name= mysqli_real_escape_string($connection, $_POST['first_name']);
-    $last_name= mysqli_real_escape_string($connection, $_POST['last_name']);
-    $prem=mysqli_real_escape_string($connection, $_POST['prem']);
     if(!isset($_SESSION["user_id"])) {
-      
-      $query1 = "INSERT INTO tbl_206_users(email,password,premmisions) VALUES
-			('$email','$pass','$prem')";
-      $query2 = "INSERT INTO tbl_206_officers(first_name,last_name) VALUES
-			('$first_name','$last_name')";
-      header('Location: ' . URL . 'index.php');
-    }else{
-
-      $officer_id = $_SESSION["officer_id"] ; 
-      $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
-      $result_user = mysqli_query($connection , $query_user);
-      $row_user    = mysqli_fetch_array($result_user);
-  if(isset($_POST["btnemp"])){
-    
-   
-    $query3 = 'UPDATE tbl_206_users SET email = "'.$email.'" ,password = "'.$pass.'" WHERE officer_id = "'.$_SESSION["officer_id"].'";';
-    $query4 = 'UPDATE tbl_206_officers SET first_name = "'.$first_name.'" ,last_name = "'.$last_name.'" WHERE officer_id = "'.$_SESSION["officer_id"].'";';
-    $result3 = mysqli_query($connection, $query3);
-    $result4 = mysqli_query($connection, $query4);
-  
-    
-    header('Location: ' . URL . 'list.php');
-  }
-  $userID = $_SESSION["user_id"] ;
+        header('Location: ' . URL . 'index.php');
     }
-    
+    $userID = $_SESSION["user_id"] ;
+    $officer_id = $_SESSION["officer_id"] ; 
+    $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
+    $result_user = mysqli_query($connection , $query_user);
+    $row_user    = mysqli_fetch_array($result_user);
+    if(isset($_POST["btnemp"])){
+      
+      $email = mysqli_real_escape_string($connection, $_POST["proemail"]);
+      $pass = mysqli_real_escape_string($connection, $_POST['password']);
+      $first_name= mysqli_real_escape_string($connection, $_POST['first_name']);
+      $last_name= mysqli_real_escape_string($connection, $_POST['last_name']);
+      $query3 = 'UPDATE tbl_206_users SET email = "'.$email.'" ,password = "'.$pass.'" WHERE officer_id = "'.$_SESSION["officer_id"].'";';
+      $query4 = 'UPDATE tbl_206_officers SET first_name = "'.$first_name.'" ,last_name = "'.$last_name.'" WHERE officer_id = "'.$_SESSION["officer_id"].'";';
+      $result3 = mysqli_query($connection, $query3);
+      $result4 = mysqli_query($connection, $query4);
+  
+      
+      header('Location: ' . URL . 'list.php');
+    }
+
 
 ?>
 
@@ -160,7 +151,7 @@
                     <span class="input-group-text">אימייל</span>
                 </div><br><br>
                 <div class="input-group input-group-lg">
-                    <input type="text" name="password" id="password" class="form-control" placeholder="סיסמה" <?php if (isset($_GET["id"])){ echo 'value="'. $row_user["password"].'"';}?>>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="סיסמה" <?php if (isset($_GET["id"])){ echo 'value="'. $row_user["password"].'"';}?>>
                     <span class="input-group-text">סיסמה</span>
                 </div><br><br>
                 <div class="input-group input-group-lg">
@@ -171,16 +162,6 @@
                     <input type="text" name="last_name" id="last_name" class="form-control" placeholder="שם משפחה"<?php if (isset($_GET["id"])){ echo 'value="'. $row_user["last_name"].'"';}?>>
                     <span class="input-group-text">שם משפחה</span>
                 </div><br><br>
-                <?php if(!isset($_SESSION["user_id"])){
-
-                  '<div class="input-group mb-3 input-group-lg">
-                      <select class="form-select" name="prem"  style="direction: rtl;">
-                        <option value="1">מוקדן</option>
-                        <option value="0">שוטר</option>
-                      </select>
-                      <label class="input-group-text" for="risk">הרשאות</label>
-                    </div>';
-                }?>
             <input type="hidden" id="id" name="id" <?php if (isset($_GET["id"])){ echo 'value='. $row_user["id"];}?>>
             <button id="btnform" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  name="btnemp">
                 אישור

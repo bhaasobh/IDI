@@ -3,13 +3,6 @@ include "config.php";
 include "db.php";
 session_start();
 
-if(isset($_POST["singup"])){
-    $_SESSION["user_id"]=null;
-    header('Location: ' . URL . 'profile.php');
-}
-    
-
-
 
 if(!empty($_POST["loginMail"])) {
     $query  = "SELECT * FROM tbl_206_users WHERE email='" 
@@ -53,7 +46,7 @@ if(!empty($_POST["loginMail"])) {
     <div id = "login-card">   
         <div class="container">
             <h1 id ="title">כניסה</h1>
-            <form action="" method="post" id="frmlog">
+            <form action="index.php" method="post" id="frmlog">
                 <section id="log">
                     <div class="mb-3 input">
                         <label for="exampleInputEmail1" class="form-label" ></label>
@@ -63,7 +56,7 @@ if(!empty($_POST["loginMail"])) {
                         <label for="exampleInputPassword1" class="form-label" ></label>
                          <input type="password" name = "loginPass" class="form-control" id="exampleInputPassword1" placeholder="סיסמה">
                     </div>
-                    <button type="submit" name="singup" class="btn btn-primary" id="singup">הירשם</button>
+                    <a href="pro.php">הירשם</a>
                     <br>
                     <button type="submit" class="btn btn-primary" id="logbtn">התחבר</button>
                     <div class="error-message">
