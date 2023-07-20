@@ -159,7 +159,7 @@ session_start();
         <h2>ראשי</h2>
         <div id="btn">
           <div class="btn1" id="btn_auto">
-            <button type="submit" class="btn btn-outline-danger" id="change-background">מצב עומס</button>
+            <button type="submit" class="btn btn-outline-danger" id="change-background" <?php if($row_user["premmisions"]==0) echo 'hidden'; ?> >מצב עומס</button>
           </div>
         <form action="list.php">
           <div class="btn1">
