@@ -72,7 +72,14 @@ function changebackgrund(){
       $("#reinforcement_yorashalayem").attr('disabled', !$("#reinforcement_yorashalayem").attr('disabled'));
       
         });
-      
+
+        $("#officers_id").click(function() {
+
+          const officer = document.getElementById("officers_id").getElementsByTagName('li');
+          //select= document.querySelector('#officers_id');
+          //output= select.options[select.selectedIndex].value;
+          console.log(officer);
+        });
       
       });
 
@@ -119,7 +126,6 @@ function changebackgrund(){
   window.onload = function init() {
     makeSelected();
 }
-
 
 
 function showData(data){
