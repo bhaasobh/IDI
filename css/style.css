@@ -479,11 +479,6 @@ border-radius: 100%;
     justify-content: right;
 }
 
-#officer > li
-{
-    direction: rtl;
-}
-
 #send_message_form
 {
     display: flex;

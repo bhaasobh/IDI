@@ -4,8 +4,9 @@
     include "db.php";
 
 	session_start();
-	$event_id = $_SESSION["event_id"];
-		
+
+
+		$event_id = $_SESSION["event_id"];
 		$actname = mysqli_real_escape_string($connection, $_POST['actname']);
 		$offcer_owner  = mysqli_real_escape_string($connection, $_POST['officer']);
         $event_type = mysqli_real_escape_string($connection, $_POST['acttype']);
@@ -29,13 +30,10 @@
 			('$actname','$event_type','$location','$officer_quantity','$date','$risk_level','$start_time','$description','$offcer_owner')";
 			$result = mysqli_query($connection, $query2);
 		}
-	
 
-	
-	
-	mysqli_free_result($result);
-	
-	
+		mysqli_free_result($result);
+		
+
 	mysqli_close($connection);
 
 	?>

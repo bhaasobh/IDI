@@ -1,6 +1,6 @@
-<?php	
-    include "config.php";
-    include "db.php";
+<?php
+    include 'db.php';
+    include 'config.php';
 
     session_start();
 
@@ -12,15 +12,26 @@
     $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
     $result_user = mysqli_query($connection , $query_user);
     $row_user    = mysqli_fetch_array($result_user);
-
-    $event_id = $_GET["event_id"];
-
-    $query="DELETE FROM tbl_206_events where event_id =".$event_id;
-
-    $result = mysqli_query($connection, $query);
-
+    if(isset($_POST["btnemp"])){
+      
+      $email = mysqli_real_escape_string($connection, $_POST["proemail"]);
+      $pass = mysqli_real_escape_string($connection, $_POST['password']);
+      $first_name= mysqli_real_escape_string($connection, $_POST['first_name']);
+      $last_name= mysqli_real_escape_string($connection, $_POST['last_name']);
+      $query3 = 'UPDATE tbl_206_users SET email = "'.$email.'" ,password = "'.$pass.'" WHERE officer_id = "'.$_SESSION["officer_id"].'";';
+      $query4 = 'UPDATE tbl_206_officers SET first_name = "'.$first_name.'" ,last_name = "'.$last_name.'" WHERE officer_id = "'.$_SESSION["officer_id"].'";';
+      $result3 = mysqli_query($connection, $query3);
+      $result4 = mysqli_query($connection, $query4);
+  
+      
+      header('Location: ' . URL . 'list.php');
+    }
+    // mysqli_free_result($result3);
+    // mysqli_free_result($result4);
     
-    ?>
+
+?>
+
 
 <!DOCTYPE html>
 <html>
@@ -44,6 +55,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="java/scripts.js"></script>
   <title>Immediate Danger Indicator</title>
 </head>
 <body>
@@ -130,14 +142,34 @@
   </header>
   <section id="wrapper">
     <section id="aside-and-main">
-      <main>
-            <div id="success">
-            <h1>האירוע נמחק בהצלחה</h1>
-            <br>
-            <a href="list.php" class="btn btn-primary">
+      <main id="main">
+          <h2>עריכת פרופיל</h2>
+            <form id="add_pro" method="POST" class="form-check" action="">
+                <br><br><br>
+                <div class="row d-lg-column-reverse">
+                <div class="col-12" >
+                    <div class="input-group input-group-lg">
+                    <input type="text" name="proemail" id="proemail" class="form-control"   placeholder="אימייל" required <?php if (isset($_GET["id"])){ echo 'value="'. $row_user["email"].'"';}?>>
+                    <span class="input-group-text">אימייל</span>
+                </div><br><br>
+                <div class="input-group input-group-lg">
+                    <input type="text" name="password" id="password" class="form-control" placeholder="סיסמה" <?php if (isset($_GET["id"])){ echo 'value="'. $row_user["password"].'"';}?>>
+                    <span class="input-group-text">סיסמה</span>
+                </div><br><br>
+                <div class="input-group input-group-lg">
+                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder="שם פרטי"<?php if (isset($_GET["id"])){ echo 'value="'. $row_user["first_name"].'"';}?>>
+                    <span class="input-group-text">שם פרטי</span>
+                </div><br><br>
+                <div class="input-group input-group-lg">
+                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder="שם משפחה"<?php if (isset($_GET["id"])){ echo 'value="'. $row_user["last_name"].'"';}?>>
+                    <span class="input-group-text">שם משפחה</span>
+                </div><br><br>
+            <input type="hidden" id="id" name="id" <?php if (isset($_GET["id"])){ echo 'value='. $row_user["id"];}?>>
+            <button id="btnform" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  name="btnemp">
                 אישור
-            </a>
-        </div>
+              </button>
+            </div>
+            </form>
       </main>
       <aside id="navigation">
         <ul class="nav-flex-column">
@@ -205,9 +237,6 @@
 
 <?php
 	
+	
 mysqli_close($connection);
 ?>
-
-
-
-

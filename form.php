@@ -9,11 +9,12 @@
         header('Location: ' . URL . 'index.php');
     }
     $userID = $_SESSION["user_id"] ;
+    $officer_id = $_SESSION["officer_id"] ; 
     $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
     $result_user = mysqli_query($connection , $query_user);
     $row_user    = mysqli_fetch_array($result_user);
     $event_id = null;
-    if (isset($_GET["event_id"])) { 
+    if (!empty($_GET["event_id"])) { 
       
       $_SESSION["event_id"] = $_GET["event_id"];
         $event_id = $_GET["event_id"];
@@ -22,6 +23,7 @@
 
         if($result) { 
             $row    = mysqli_fetch_assoc($result); 
+            
         }
     }
 
@@ -108,6 +110,12 @@
                       d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
                   </svg> היסטרית התראות </a>
               </li>
+              <li class="nav-item" <?php if($row_user["premmisions"]==1) echo 'hidden'; ?>>
+                <a class="nav-link "   href="new_officer.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>הוסף שוטר חדש</a>
+          </li>
               <div class="exit">
                 <li class="nav-item">
                   <a class="nav-link" href="index.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
@@ -131,7 +139,7 @@
       <h6 id="profileName">שלום  <?php echo $row_user["rank"]. " ". $row_user["first_name"]." ". $row_user["last_name"] ?></h6>
       </div>
       <div class="p-2">
-      <img src="<?php echo $row_user["photo_path"] ?>" class="profilePic" alt=<?php echo $row_user["first_name"] ?> title=<?php echo $row_user["first_name"] ?>>
+      <a href="profile.php?id=<?php echo $officer_id ?>"><img src="<?php echo $row_user["photo_path"] ?>" class="profilePic" alt=<?php echo $row_user["first_name"] ?> title=<?php echo $row_user["first_name"] ?>></a>
       </div>
     </div>
   </header>
@@ -139,7 +147,7 @@
     <section id="aside-and-main">
       <main id="main">
       <?php if (isset($_GET["event_id"])){ echo "<h2>עריכה</h2>";}else{echo "<h2>הוספת אירוע חדש</h2>";}?>
-                <form  id="add_event_form" method="POST" action=""  class="form-check">
+                <form  id="add_form" method="POST" action=""  class="form-check">
                 <br><br><br>
                 <div class="row d-lg-column-reverse">
                 <div class="col-lg-6">
@@ -271,6 +279,12 @@
                 <path
                   d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
               </svg> היסטוריית התראות </a>
+          </li>
+          <li class="nav-item" <?php if($row_user["premmisions"]==1) echo 'hidden'; ?>>
+                <a class="nav-link "   href="new_officer.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>הוסף שוטר חדש</a>
           </li>
           <div class="exit">
             <li class="nav-item">

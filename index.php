@@ -8,17 +8,18 @@ if(!empty($_POST["loginMail"])) {
         . "' and password = '"
         . $_POST["loginPass"]
         ."'";
+        
+        $result = mysqli_query($connection , $query);
+        $row    = mysqli_fetch_array($result);
+        $message = "debug !";
+        if(is_array($row)) {
+            $_SESSION["user_id"] = $row['id'];
+            $_SESSION["officer_id"] = $row['officer_id'];
+            header('Location: ' . URL . 'list.php');
+        } else {
+            $message = "Invalid username or password !";
+        }
 
-    $result = mysqli_query($connection , $query);
-    $row    = mysqli_fetch_array($result);
-    $message = "debug !";
-    if(is_array($row)) {
-        session_start();
-        $_SESSION["user_id"] = $row['id'];
-        header('Location: ' . URL . 'list.php');
-    } else {
-        $message = "Invalid username or password !";
-    }
 }
 
 ?>

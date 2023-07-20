@@ -1,5 +1,5 @@
 
 
 <?php
-	define("URL","http://localhost/IDI/");
+	define("URL","http://localhost/IDI-Bahaa/");
 ?>

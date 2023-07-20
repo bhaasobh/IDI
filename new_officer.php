@@ -1,6 +1,10 @@
-<?php	
-    include "config.php";
-    include "db.php";
+
+
+
+
+<?php
+    include 'db.php';
+    include 'config.php';
 
     session_start();
 
@@ -13,14 +17,27 @@
     $result_user = mysqli_query($connection , $query_user);
     $row_user    = mysqli_fetch_array($result_user);
 
-    $event_id = $_GET["event_id"];
+    if(isset($_GET["btnofficer"])){
+      
+        $first_name = mysqli_real_escape_string($connection, $_GET['first_name']);
+        $last_name = mysqli_real_escape_string($connection, $_GET['last_name']);
+        $city= mysqli_real_escape_string($connection, $_GET['city']);
+        $forc= mysqli_real_escape_string($connection, $_GET['force_Qty']);
+        $eid= mysqli_real_escape_string($connection, $_GET['eventid']);
+        
 
-    $query="DELETE FROM tbl_206_events where event_id =".$event_id;
-
-    $result = mysqli_query($connection, $query);
-
+        $query = "INSERT INTO tbl_206_officers(first_name,last_name,team,address,event_id) VALUES
+			('$first_name','$last_name','$forc','$city','$eid')";
+			echo $query;
+            $result = mysqli_query($connection, $query);
+                header('Location: ' . URL . 'list.php');
+      }
     
-    ?>
+		
+
+      mysqli_close($connection);
+?>
+
 
 <!DOCTYPE html>
 <html>
@@ -44,6 +61,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="java/scripts.js"></script>
   <title>Immediate Danger Indicator</title>
 </head>
 <body>
@@ -101,6 +119,12 @@
                       d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
                   </svg> היסטרית התראות </a>
               </li>
+              <li class="nav-item" <?php if($row_user["premmisions"]==1) echo 'hidden'; ?>>
+                <a class="nav-link "   href="new_officer.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>הוסף שוטר חדש</a>
+            </li>
               <div class="exit">
                 <li class="nav-item">
                   <a class="nav-link" href="index.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
@@ -130,14 +154,43 @@
   </header>
   <section id="wrapper">
     <section id="aside-and-main">
-      <main>
-            <div id="success">
-            <h1>האירוע נמחק בהצלחה</h1>
-            <br>
-            <a href="list.php" class="btn btn-primary">
+      <main id="main">
+      <h2>הוספת שוטר</h2>
+            <form action="">
+                <br><br><br>
+                <div class="row d-lg-column-reverse">
+                <div class="col-12" >
+                    <div class="input-group input-group-lg">
+                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="שם פרטי" required>
+                        <span class="input-group-text">שם פרטי</span>
+                    </div><br><br>
+                    <div class="input-group input-group-lg">
+                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="שם משפחה" required>
+                        <span class="input-group-text">שם משפחה</span>
+                    </div><br><br>
+                    <div class="input-group input-group-lg">
+                    <input type="text" name="city" id="proemail" class="form-control"   placeholder="עיר">
+                    <span class="input-group-text">עיר</span>
+                </div><br><br>
+                <div class="input-group input-group-lg">
+                    <input type="num" name="eventid"  class="form-control"   placeholder="מספר אירוע">
+                    <span class="input-group-text">מספר אירוע</span>
+                    </div><br>
+                <div class="input-group mb-3 input-group-lg">
+                    <select class="form-select" name="force_Qty" id="force_Qty" style="direction: rtl;" required>
+                      <option value="אריה">אריה</option>
+                      <option value="השלום">השלום</option>
+                      <option value="ירושלים מרכז">ירושלים מרכז</option>
+                      <option value="הבולדוזרים">הבולדוזרים</option>
+                    </select>
+                    <label class="input-group-text" for="force_Qty">בחירת צוות</label>
+                  </div>
+            <button id="btnofficer" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" name="btnofficer">
                 אישור
-            </a>
-        </div>
+              </button>
+                    </div>
+                    <div id="msg"></div>
+            </form>
       </main>
       <aside id="navigation">
         <ul class="nav-flex-column">
@@ -185,6 +238,12 @@
                   d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
               </svg> היסטוריית התראות </a>
           </li>
+          <li class="nav-item" <?php if($row_user["premmisions"]==1) echo 'hidden'; ?>>
+                <a class="nav-link "   href="new_officer.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>הוסף שוטר חדש</a>
+          </li>
           <div class="exit">
             <li class="nav-item">
               <a class="nav-link" href="index.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
@@ -201,13 +260,3 @@
   </section>
 </body>
 </html>
-
-
-<?php
-	
-mysqli_close($connection);
-?>
-
-
-
-

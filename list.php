@@ -10,6 +10,7 @@ session_start();
         header('Location: ' . URL . 'index.php');
     } else {
       $userID = $_SESSION["user_id"] ; 
+      $officer_id = $_SESSION["officer_id"] ; 
       $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
         if(isset($_GET["location"])){
               $city=$_GET["location"];
@@ -25,13 +26,19 @@ session_start();
               $result_user = mysqli_query($connection , $query_user);
               $row_user    = mysqli_fetch_array($result_user);
             }
-        }else{
+          }else{
+          if(isset($_GET["loca"])){ 
+            $query_events = "SELECT * FROM tbl_206_events order by location";
+            $result_events = mysqli_query($connection , $query_events);
+            $result_user = mysqli_query($connection , $query_user);
+            $row_user    = mysqli_fetch_array($result_user);
+          }else{
             $query_events  = "SELECT * FROM tbl_206_events order by date,time_start";
             $result_events = mysqli_query($connection , $query_events);
             $result_user = mysqli_query($connection , $query_user);
             $row_user    = mysqli_fetch_array($result_user);
           }
-          
+          }
     }
     ?>
 <!DOCTYPE html>
@@ -113,6 +120,12 @@ session_start();
                       d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
                   </svg> היסטרית התראות </a>
               </li>
+              <li class="nav-item" <?php if($row_user["premmisions"]==1) echo 'hidden'; ?>>
+                <a class="nav-link "   href="new_officer.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>הוסף שוטר חדש</a>
+                </li>
               <div class="exit">
                 <li class="nav-item">
                   <a class="nav-link" href="index.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
@@ -136,7 +149,7 @@ session_start();
         <h6 id="profileName">שלום  <?php echo $row_user["rank"]. " ". $row_user["first_name"]." ". $row_user["last_name"] ?></h6>
       </div>
       <div class="p-2">
-        <img src="<?php echo $row_user["photo_path"] ?>" class="profilePic" alt=<?php echo $row_user["first_name"] ?> title=<?php echo $row_user["first_name"] ?>>
+        <a href="profile.php?id=<?php echo $officer_id ?>"><img src="<?php echo $row_user["photo_path"] ?>" class="profilePic" alt=<?php echo $row_user["first_name"] ?> title=<?php echo $row_user["first_name"] ?>></a>
       </div>
     </div>
   </header>
@@ -148,6 +161,7 @@ session_start();
           <div class="btn1" id="btn_auto">
             <button type="submit" class="btn btn-outline-danger" id="change-background">מצב עומס</button>
           </div>
+        <form action="list.php">
           <div class="btn1">
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -155,12 +169,12 @@ session_start();
                 מיון
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">לפי שעה</a></li>
-                <li><a class="dropdown-item" href="#"> לפי תאריך</a></li>
-                <li><a class="dropdown-item" href="#"> לפי רמת סיכון</a></li>
+                <li><button class="dropdown-item" href="list.php" type="submit"> לפי תאריך ושעה</button></li>
+                <li><button class="dropdown-item" href="list.php" name="loca" value="loca" type="submit">לפי מיקום</button></li>
               </ul>
             </div>
           </div>
+        </form>
           <div class="btn1">
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -178,7 +192,7 @@ session_start();
           <?php
             while($row_events = mysqli_fetch_assoc($result_events)){
               echo    '<li>';
-              echo    	'<a href="event.php?eventId=' . $row_events["event_id"] . '" </a>';
+              echo    	'<a href="event.php?eventId=' . $row_events["event_id"] . '"</a>';
               echo        '<div class="card">';
               echo          '<div class="card-body">';
               echo             '<div class="row">';
@@ -281,10 +295,16 @@ session_start();
                   d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
               </svg> היסטוריית התראות </a>
           </li>
+          <li class="nav-item" <?php if($row_user["premmisions"]==1) echo 'hidden'; ?>>
+                <a class="nav-link "   href="new_officer.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>הוסף שוטר חדש</a>
+          </li>
           <div class="exit">
             <li class="nav-item">
               <a class="nav-link" href="index.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
-                  fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
+                  fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16" type="submit" name="exit">
                   <path
                     d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z" />
                   <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z" />

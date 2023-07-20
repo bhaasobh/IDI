@@ -72,14 +72,7 @@ function changebackgrund(){
       $("#reinforcement_yorashalayem").attr('disabled', !$("#reinforcement_yorashalayem").attr('disabled'));
       
         });
-
-        $("#officers_id").click(function() {
-
-          const officer = document.getElementById("officers_id").getElementsByTagName('li');
-          //select= document.querySelector('#officers_id');
-          //output= select.options[select.selectedIndex].value;
-          console.log(officer);
-        });
+      
       
       });
 
@@ -88,7 +81,7 @@ function changebackgrund(){
       function sub(){
            
         const submit = document.querySelector('#btnform');
-        const form = document.querySelector('#add_event_form');
+        const form = document.querySelector('#add_form');
         form.addEventListener('submit', (e) => {
         e.preventDefault();
     
@@ -128,6 +121,7 @@ function changebackgrund(){
 }
 
 
+
 function showData(data){
   const ulFrag = document.createDocumentFragment();
 
@@ -146,3 +140,5 @@ function showData(data){
 fetch("data/city.json")
   .then(response => response.json())
   .then(data => showData(data));
+
+

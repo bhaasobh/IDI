@@ -10,10 +10,13 @@ session_start();
     } else {
 
           $userID = $_SESSION["user_id"] ;
+          $officer_id = $_SESSION["officer_id"] ; 
           $query_user  = "select * from tbl_206_officers inner join tbl_206_users using (officer_id) where id=" . $userID;
           $result_user = mysqli_query($connection , $query_user);
           $row_user    = mysqli_fetch_array($result_user);
           $event_id = $_GET['eventId'];
+
+
 
          $query_officers  = "SELECT * from tbl_206_officers where event_id=".$event_id.";";
          $result_officers = mysqli_query($connection , $query_officers);
@@ -21,14 +24,16 @@ session_start();
 
          $query_Allofficers  = "SELECT * from tbl_206_officers ;";
          $result_Allofficers = mysqli_query($connection , $query_Allofficers);
+         $row_Allofficers = mysqli_fetch_array($result_Allofficers);
 
 
          $query_event = "select * from tbl_206_events e inner join tbl_206_officers o on e.offcer_owner = o.officer_id where e.event_id =".$event_id.";";
          $result_event = mysqli_query($connection , $query_event);
          $row_event    = mysqli_fetch_array($result_event);
-
          $team= "select*from tbl_206_officers o inner join tbl_206_events e where o.team=e.officer_qty and o.team='".$row_event["officer_qty"]."' and e.event_id='".$event_id."';";
           $team_result=mysqli_query($connection , $team);
+          $row_team = mysqli_fetch_array($team_result);
+      
 
           $comander= "select*from tbl_206_officers o inner join tbl_206_events e where o.team=e.officer_qty and o.team='".$row_event["officer_qty"]."' and e.event_id='".$event_id."' and role='comander';";
           $comander_result=mysqli_query($connection , $comander);
@@ -117,6 +122,12 @@ session_start();
                       d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
                   </svg> היסטרית התראות </a>
               </li>
+              <li class="nav-item" <?php if($row_user["premmisions"]==1) echo 'hidden'; ?>>
+                <a class="nav-link "   href="new_officer.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>הוסף שוטר חדש</a>
+              </li>
               <div class="exit">
                 <li class="nav-item">
                   <a class="nav-link" href="index.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
@@ -140,7 +151,7 @@ session_start();
       <h6 id="profileName">שלום  <?php echo $row_user["rank"]. " ". $row_user["first_name"]." ". $row_user["last_name"] ?></h6>
       </div>
       <div class="p-2">
-        <img src="<?php echo $row_user["photo_path"] ?>" class="profilePic" alt=<?php echo $row_user["first_name"] ?> title=<?php echo $row_user["first_name"] ?>>
+      <a href="profile.php?id=<?php echo $officer_id ?>"><img src="<?php echo $row_user["photo_path"] ?>" class="profilePic" alt=<?php echo $row_user["first_name"] ?> title=<?php echo $row_user["first_name"] ?>></a>
       </div>
     </div>
   </header>
@@ -231,7 +242,7 @@ session_start();
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="send_message_body">
-                  <form id="send_message_form" action="event.php"  method="get">
+                <form id="send_message_form" action="event.php"  method="get">
                   <input type="hidden" name="eventId" value="<?php  echo $event_id ?>" />
                     <div class="mb-3">
                       <label for="exampleFormControlInput1" class="form-label">כותרת ההודעה</label><br>
@@ -298,106 +309,39 @@ session_start();
                   referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
               </section>
-              
               <section id="copsEvent">
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_officerModal">הוסף שוטר לאירוע</button>
-                  <div class="modal fade" id="add_officerModal" tabindex="-1" aria-labelledby="send_message"
-                  aria-hidden="true">
-                  <div class="modal-dialog">
-                  <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="send_message">הוסף שוטר </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                                <div class="modal-body" id="send_message_body">
-                                        <form id="send_message_form" action="event.php"  method="get">
-                                          <input type="hidden" name="eventId" value="<?php  echo $event_id ?>" />
-
-                                          <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown_officers"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                בחר שוטר
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="officers_id" name="officers_id">
-            <?php 
-                $officer_id = 0;
-                while($row_AllOfficers = mysqli_fetch_assoc($result_Allofficers)){
-                    echo '<li value ="'.$row_AllOfficers["officer_id"].'"><a class="dropdown-item" href="#?officer_id='.$row_AllOfficers["officer_id"].'">'. $row_AllOfficers["first_name"].' '.$row_AllOfficers["last_name"]. '</a></li>';
-              
-                }
-                if (isset($_GET["officer_id"]))
-              {
-                $officer_id =$_GET["officer_id"];
-                echo $officer_id;
-                echo "bahaa";
-              }
                 
-             
-
-              ?>
-                  
-              </ul>
-              <labal> או הוסף שוטר חדש</label>
-            </div>
-
-                                        <div class="form-row">
-                                              <div class="form-group">
-                                                <label for="first_name">שם פרטי</label>
-                                                <input type="text" class="form-control" id="inputfirst_name" placeholder="שם פרטי" <?php if (isset($_GET["event_id"])){ echo 'value="'. $row["date"].'"';}?>>
-                                              </div>
-                                              <div class="form-group">
-                                                <label for="last_name">שם משפחה</label>
-                                                <input type="text" class="form-control" id="inputlast_name" placeholder="שם פרטי">
-                                              </div>
-                                            </div>
-                                            <div class="form-group">
-                                              <label for="rank">דרגה</label>
-                                              <input type="text" class="form-control" id="inputRank" placeholder="דרגה">
-                                            </div>
-                                            <div class="form-group">
-                                              <label for="role">תפקיד</label>
-                                              <input type="text" class="form-control" id="inputRank" placeholder="operator or officer">
-                                        
-                                            </div>
-                                            <div class="form-row">
-                                              <div class="form-group">
-                                                <label for="address">כתובת</label>
-                                                <input type="text" class="form-control" id="inputAddress">
-                                              </div>
-                                              <div class="form-group">
-                                                <label for="event_id">מספר אירוע</label>
-                                                <input type="text" class="form-control" id="inputEvent_id" <?php echo 'value="'.$event_id.'"'?> disabled>
-                                              </div>
-                                            </div>
-                                            <div class="form-group">
-                                              <div class="form-check">
-                                              </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">הוסף</button>
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">סגור</button>
-                                        </form>
-                                </div>
-                                </div>
-                                </div>
-                          </div>
-                        
+                                            
                         <?php
-                    while($row_officers = mysqli_fetch_assoc($team_result)){
-                      echo '<div class="card copCard">
-                      <div class="card-body copBody">
-                      <h6 class="copName" >' . $row_officers["first_name"] ." ". $row_officers["last_name"]  . '</h6>
-                      <img src="'. $row_officers["photo_path"] . '" class="copPhoto">
-                      <div class="copStatusColor"></div>
-                      <label class="copStatus">מחובר</label>
-                      <svg id="cameraIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-camera-video-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                        d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z" />
-                      </svg>
-                    </div>
-                  </div>';
-                    }
-                    ?>
+                          echo '<div class="card copCard">
+                          <div class="card-body copBody">
+                              <h6 class="copName" >' . $row_comander["first_name"] ." ". $row_comander["last_name"]  . '</h6>
+                                    <img src="'. $row_comander["photo_path"] . '" class="copPhoto">
+                                        <div class="copStatusColor"></div>
+                                      <label class="copStatus">מחובר</label>
+                                      <svg id="cameraIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                      class="bi bi-camera-video-fill" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd"
+                                      d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z" />
+                                    </svg>
+                            </div>
+                        </div>';
+                        while($row_officers = mysqli_fetch_assoc($team_result)){
+                              echo '<div class="card copCard">
+                                        <div class="card-body copBody">
+                                            <h6 class="copName" >' . $row_officers["first_name"] ." ". $row_officers["last_name"]  . '</h6>
+                                                  <img src="'. $row_officers["photo_path"] . '" class="copPhoto">
+                                                      <div class="copStatusColor"></div>
+                                                    <label class="copStatus">מחובר</label>
+                                                    <svg id="cameraIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                    class="bi bi-camera-video-fill" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                    d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z" />
+                                                  </svg>
+                                          </div>
+                                    </div>';
+                        }
+                        ?>
             </section>
         </div>
         <?php
@@ -422,6 +366,10 @@ session_start();
                           <button type="submit" class="btn btn-primary">כן</button>
                         </a>';};
                   ?>
+
+
+
+
                 </main>
                 <aside id="navigation">
                   <ul class="nav-flex-column">
@@ -469,6 +417,12 @@ session_start();
                 d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
               </svg> היסטוריית התראות </a>
             </li>
+            <li class="nav-item" <?php if($row_user["premmisions"]==1) echo 'hidden'; ?>>
+                <a class="nav-link "   href="new_officer.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>הוסף שוטר חדש</a>
+          </li>
             <div class="exit">
               <li class="nav-item">
                 <a class="nav-link" href="index.php"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="30"
