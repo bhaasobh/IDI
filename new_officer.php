@@ -1,13 +1,7 @@
-
-
-
-
 <?php
     include 'db.php';
     include 'config.php';
-
     session_start();
-
     if(!isset($_SESSION["user_id"])) {
         header('Location: ' . URL . 'index.php');
     }
@@ -18,36 +12,24 @@
     $row_user    = mysqli_fetch_array($result_user);
     $query_events  = "SELECT * FROM tbl_206_events ";
     $result_events = mysqli_query($connection , $query_events);
-
-
     if(isset($_GET["btnofficer"])){
-      
         $first_name = mysqli_real_escape_string($connection, $_GET['first_name']);
         $last_name = mysqli_real_escape_string($connection, $_GET['last_name']);
         $city= mysqli_real_escape_string($connection, $_GET['city']);
-       
         $eid= mysqli_real_escape_string($connection, $_GET['eventid']);
-
         $query_event_id = "SELECT * FROM tbl_206_events where event_id=".$eid;
         $result_event_id = mysqli_query($connection , $query_event_id);
         $row_event_id = mysqli_fetch_array($result_event_id);
         $forc = $row_event_id['officer_qty'];
         echo $query_event_id;
-
-
         $query = "INSERT INTO tbl_206_officers(first_name,last_name,team,address,event_id) VALUES
 			('$first_name','$last_name','$forc','$city','$eid')";
 			echo $query;
             $result = mysqli_query($connection, $query);
                 header('Location: ' . URL . 'list.php');
       }
-    
-		
-
       mysqli_close($connection);
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +61,6 @@
       <section>
         <button id="hamburger" class="bi bi-list navbar-toggler d-lg-none d-inline" type="button"
           data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"></button>
-
         <div class="offcanvas d-flex align-items-center flex-diraction offcanvas-bottom" tabindex="-1"
           id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
@@ -183,7 +164,6 @@
                 </div><br><br>
                     <div class="input-group mb-3 input-group-lg">
                     <select class="form-select"  name="eventid"  id="eventid" style="direction: rtl;" required>
-
                     <?php
                     while($row_events = mysqli_fetch_assoc($result_events)){
                       echo '<option value="'.$row_events["event_id"].'">'.$row_events["title"].' '.$row_events["location"].'</option>';

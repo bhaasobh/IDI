@@ -1,9 +1,7 @@
 <?php
     include 'db.php';
     include 'config.php';
-
     session_start();
-
     if(!isset($_SESSION["user_id"])) {
         header('Location: ' . URL . 'index.php');
     }
@@ -22,17 +20,9 @@
       $query4 = 'UPDATE tbl_206_officers SET first_name = "'.$first_name.'" ,last_name = "'.$last_name.'" WHERE officer_id = "'.$_SESSION["officer_id"].'";';
       $result3 = mysqli_query($connection, $query3);
       $result4 = mysqli_query($connection, $query4);
-  
-      
       header('Location: ' . URL . 'list.php');
     }
-    // mysqli_free_result($result3);
-    // mysqli_free_result($result4);
-    
-
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +54,6 @@
       <section>
         <button id="hamburger" class="bi bi-list navbar-toggler d-lg-none d-inline" type="button"
           data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"></button>
-
         <div class="offcanvas d-flex align-items-center flex-diraction offcanvas-bottom" tabindex="-1"
           id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
@@ -233,8 +222,6 @@
   </section>
 </body>
 </html>
-
-
 <?php
 mysqli_close($connection);
 ?>

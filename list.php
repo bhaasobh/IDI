@@ -1,12 +1,8 @@
 <?php
 include "config.php";
 include "db.php";
-
-
 session_start();
-
     if(!isset($_SESSION["user_id"])) {
-        
         header('Location: ' . URL . 'index.php');
     } else {
       $userID = $_SESSION["user_id"] ; 
@@ -19,7 +15,6 @@ session_start();
               $result_events = mysqli_query($connection , $query_events);
               $result_user = mysqli_query($connection , $query_user);
               $row_user    = mysqli_fetch_array($result_user);
-     
             }else{
               $query_events 	= "SELECT * FROM tbl_206_events WHERE location=".$city;
               $result_events = mysqli_query($connection , $query_events);

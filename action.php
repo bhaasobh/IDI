@@ -1,11 +1,6 @@
-
-
 <?php	
     include "db.php";
-
 	session_start();
-
-
 		$event_id = $_SESSION["event_id"];
 		$actname = mysqli_real_escape_string($connection, $_POST['actname']);
 		$offcer_owner  = mysqli_real_escape_string($connection, $_POST['officer']);
@@ -17,11 +12,9 @@
 		$description  = mysqli_real_escape_string($connection, $_POST['description']);
 		$risk_level  = mysqli_real_escape_string($connection, $_POST['risk']);
 		if(!empty($_SESSION["event_id"])){
-			
 			$query2 = 'UPDATE tbl_206_events SET title = "'.$actname.'" ,event_type = "'.$event_type.'" ,location = "'.$location.'"
 			,officer_qty = "'.$officer_quantity.'" ,date = "'.$date.'" ,risk_level = "'.$risk_level.'" ,time_start = "'.$start_time.'" 
 			,description = "'.$description.'" ,offcer_owner = "'.$offcer_owner.'"  WHERE event_id = "'.$event_id.'";';
-			
 			$result = mysqli_query($connection, $query2);
 			unset($_SESSION['event_id']);
 		}
@@ -30,10 +23,6 @@
 			('$actname','$event_type','$location','$officer_quantity','$date','$risk_level','$start_time','$description','$offcer_owner')";
 			$result = mysqli_query($connection, $query2);
 		}
-
 		mysqli_free_result($result);
-		
-
 	mysqli_close($connection);
-
 	?>

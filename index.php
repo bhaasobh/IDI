@@ -19,11 +19,8 @@ if(!empty($_POST["loginMail"])) {
         } else {
             $message = "Invalid username or password !";
         }
-
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
